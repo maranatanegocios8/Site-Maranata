@@ -1,0 +1,21 @@
+MARANATA MARKETING — PACOTE PRONTO PARA HOSTINGER
+
+Este pacote deve ocupar diretamente a raiz pública do domínio maranatamarketing.com.
+
+CAMINHOS CORRIGIDOS
+Todas as páginas institucionais, de Serviços, Segmentos, Cases, Blog, Sobre e Método MK4 apontam os recursos compartilhados para:
+  /assets/seo-site.css
+  /assets/maranata-logo.png
+  /maranata-icon.png
+
+Com isso, não importa se a página está em /blog/artigo/, /servicos/google-ads/ ou /segmentos/psicologos/: o navegador sempre busca os assets na raiz correta do domínio.
+
+COMO PUBLICAR
+1. Faça backup da public_html atual.
+2. No Gerenciador de Arquivos da Hostinger, entre na public_html do domínio maranatamarketing.com.
+3. Envie o CONTEÚDO da pasta public_html deste pacote para ali.
+4. A estrutura correta deve ficar public_html/index.html, public_html/assets/, public_html/blog/, public_html/servicos/ etc.
+5. NÃO deixe como public_html/public_html/index.html.
+6. Depois teste /assets/seo-site.css, /servicos/seo/ e /blog/quanto-custa-google-ads/.
+
+A estrutura do Resend foi mantida sem alterações.

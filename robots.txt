@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /.private/
+Disallow: /.private.1958/
+
+Sitemap: https://maranatamarketing.com/sitemap.xml

@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex,follow">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Diagnóstico Comercial Maranata Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Open+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #050a14;
+  --purple: #7c3aed;
+  --purple-light: #a855f7;
+  --purple-glow: rgba(124, 58, 237, 0.4);
+  --white: #ffffff;
+  --white-70: rgba(255,255,255,0.7);
+  --white-40: rgba(255,255,255,0.4);
+  --white-10: rgba(255,255,255,0.1);
+  --white-05: rgba(255,255,255,0.05);
+  --white-03: rgba(255,255,255,0.03);
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.blobs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); animation: floatBlob 12s infinite alternate cubic-bezier(0.4,0,0.2,1); }
+.blob-1 { width: 500px; height: 500px; top: -120px; left: -100px; background: #5b21b6; opacity: 0.18; animation-duration: 16s; }
+.blob-2 { width: 400px; height: 400px; top: 40%; right: -120px; background: #7c3aed; opacity: 0.13; animation-duration: 22s; animation-delay: -6s; }
+.blob-3 { width: 600px; height: 600px; bottom: -180px; left: 25%; background: #4c1d95; opacity: 0.12; animation-duration: 28s; animation-delay: -12s; }
+@keyframes floatBlob { 0%{ transform:translate(0,0) scale(1); } 100%{ transform:translate(30px,55px) scale(1.12); } }
+
+.glass {
+  background: var(--white-03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-left: 1px solid rgba(255,255,255,0.07);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  position: relative; overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.glass::before {
+  content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);
+  transition:0.6s; pointer-events:none; z-index:10;
+}
+.glass:hover { background:rgba(255,255,255,0.055); border-color:rgba(255,255,255,0.22); }
+.glass:hover::before { left:100%; }
+
+.header { position:relative; z-index:1; padding:64px 24px 52px; text-align:center; }
+.header-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 18px; border-radius:999px; margin-bottom:28px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray-400); }
+.badge-dot { width:6px; height:6px; border-radius:50%; background:var(--purple-light); box-shadow:0 0 10px var(--purple-light); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.header h1 { font-family:'Montserrat',sans-serif; font-size:clamp(28px,6vw,52px); font-weight:700; line-height:1.1; letter-spacing:-0.02em; margin-bottom:16px; }
+.header h1 span { background:linear-gradient(135deg,var(--white) 0%,var(--purple-light) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.header p { font-size:15px; color:var(--white-40); max-width:480px; margin:0 auto; line-height:1.8; font-weight:300; }
+.line-div { width:40px; height:1px; background:linear-gradient(90deg,var(--purple),transparent); margin:20px auto; }
+
+.progress-bar { position:fixed; top:0; left:0; right:0; z-index:100; height:2px; background:var(--white-05); }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--purple),var(--purple-light)); width:0%; transition:width 0.5s ease; box-shadow:0 0 12px var(--purple-glow); }
+
+.container { max-width:660px; margin:0 auto; padding:40px 20px 100px; position:relative; z-index:1; }
+
+.section { border-radius:20px; margin-bottom:24px; opacity:0; transform:translateY(24px); animation:revealUp 0.6s forwards; }
+.section.hidden-section { display:none; opacity:0; transform:translateY(24px); }
+.section.reveal-animate { display:block; animation:revealUp 0.55s forwards; }
+@keyframes revealUp { to { opacity:1; transform:translateY(0); } }
+
+.section-header { padding:22px 28px 18px; border-bottom:1px solid var(--white-05); display:flex; align-items:center; gap:14px; }
+.section-num { width:34px; height:34px; flex-shrink:0; border-radius:10px; background:linear-gradient(135deg,var(--purple),var(--purple-light)); display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:14px; font-weight:700; color:var(--white); box-shadow:0 4px 16px var(--purple-glow); }
+.section-title { font-family:'Montserrat',sans-serif; font-size:15px; font-weight:600; color:var(--white); }
+
+/* GATE */
+.gate-card { border-radius:20px; padding:44px 28px; text-align:center; opacity:0; animation:revealUp 0.6s 0.1s forwards; }
+.gate-title { font-family:'Montserrat',sans-serif; font-size:clamp(20px,4vw,26px); font-weight:700; line-height:1.3; margin-bottom:10px; }
+.gate-title span { background:linear-gradient(135deg,var(--white) 0%,var(--purple-light) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.gate-sub { font-size:13px; color:var(--white-40); margin-bottom:32px; line-height:1.7; font-weight:300; }
+.gate-opts { display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:400px; margin:0 auto; }
+@media(max-width:420px){ .gate-opts { grid-template-columns:1fr; } }
+.gate-btn { padding:22px 16px; border-radius:16px; cursor:pointer; border:1px solid var(--white-10); background:var(--white-03); transition:all 0.25s; text-align:center; user-select:none; }
+.gate-btn:hover { border-color:rgba(124,58,237,0.6); background:rgba(124,58,237,0.1); transform:translateY(-3px); box-shadow:0 8px 24px rgba(124,58,237,0.18); }
+.gate-btn.selected { border-color:var(--purple-light); background:rgba(124,58,237,0.18); box-shadow:0 0 24px rgba(124,58,237,0.25); transform:translateY(-3px); }
+.gate-btn-icon { font-size:30px; margin-bottom:10px; }
+.gate-btn-label { font-family:'Montserrat',sans-serif; font-size:15px; font-weight:700; color:var(--white); margin-bottom:6px; }
+.gate-btn-desc { font-size:11px; color:var(--white-40); line-height:1.6; }
+
+.q { padding:22px 28px; border-bottom:1px solid var(--white-05); }
+.q:last-child { border-bottom:none; }
+.q-label { font-size:14px; font-weight:500; color:var(--white); margin-bottom:6px; line-height:1.5; }
+.q-hint { font-size:12px; color:var(--gray-500); margin-bottom:14px; font-weight:300; line-height:1.6; }
+
+.opts { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.opts.single { grid-template-columns:1fr; }
+@media(max-width:480px){ .opts { grid-template-columns:1fr; } }
+
+.opt { display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:10px; cursor:pointer; border:1px solid var(--white-10); background:var(--white-03); transition:all 0.22s; user-select:none; }
+.opt:hover { border-color:rgba(124,58,237,0.5); background:rgba(124,58,237,0.08); }
+.opt input { display:none; }
+.opt-mark { width:18px; height:18px; border-radius:50%; border:1.5px solid var(--white-10); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.22s; }
+.opt.checkbox .opt-mark { border-radius:5px; }
+.opt-mark::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--white); opacity:0; transform:scale(0); transition:all 0.22s; }
+.opt.checkbox .opt-mark::after { border-radius:2px; }
+.opt.selected { border-color:var(--purple-light); background:rgba(124,58,237,0.14); box-shadow:0 0 16px rgba(124,58,237,0.15); }
+.opt.selected .opt-mark { border-color:var(--purple-light); background:linear-gradient(135deg,var(--purple),var(--purple-light)); }
+.opt.selected .opt-mark::after { opacity:1; transform:scale(1); }
+.opt-text { font-size:13px; color:var(--white-70); line-height:1.4; }
+.opt.selected .opt-text { color:var(--white); }
+
+textarea, input[type="text"], input[type="email"], input[type="tel"] {
+  width:100%; background:var(--white-03); border:1px solid var(--white-10); border-radius:10px; padding:12px 16px;
+  font-family:'Open Sans',sans-serif; font-size:14px; color:var(--white); outline:none; resize:vertical;
+  transition:border-color 0.25s,box-shadow 0.25s; min-height:82px;
+}
+input[type="text"], input[type="email"], input[type="tel"] { min-height:unset; height:46px; resize:none; }
+textarea::placeholder, input::placeholder { color:var(--gray-500); }
+textarea:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
+  border-color:var(--purple-light); box-shadow:0 0 0 3px rgba(124,58,237,0.18); background:rgba(124,58,237,0.06);
+}
+
+.range-wrap { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.range-labels { display:flex; justify-content:space-between; font-size:11px; color:var(--gray-500); }
+input[type="range"] { -webkit-appearance:none; width:100%; height:3px; background:var(--white-10); border-radius:4px; outline:none; padding:0; border:none; box-shadow:none; min-height:unset; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,var(--purple),var(--purple-light)); cursor:pointer; border:2px solid var(--bg); box-shadow:0 0 12px var(--purple-glow); transition:transform 0.2s; }
+input[type="range"]::-webkit-slider-thumb:hover { transform:scale(1.2); }
+.range-value { text-align:center; font-family:'Montserrat',sans-serif; font-size:26px; font-weight:700; margin-top:8px; background:linear-gradient(135deg,var(--purple-light),var(--white)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+.submit-wrap { padding:40px 0 0; text-align:center; }
+.submit-btn { background:linear-gradient(135deg,var(--purple),var(--purple-light)); color:var(--white); border:none; padding:16px 52px; border-radius:999px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; box-shadow:0 8px 32px var(--purple-glow); transition:transform 0.25s,box-shadow 0.25s; position:relative; overflow:hidden; }
+.submit-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent); border-radius:inherit; }
+.submit-btn:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(124,58,237,0.55); }
+.submit-btn:active { transform:translateY(-1px); }
+.submit-note { margin-top:14px; font-size:11px; color:var(--gray-500); letter-spacing:0.05em; }
+
+.success { display:none; text-align:center; padding:70px 32px; border-radius:20px; }
+.success-icon { width:64px; height:64px; background:linear-gradient(135deg,var(--purple),var(--purple-light)); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; box-shadow:0 12px 40px var(--purple-glow); animation:pop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes pop { 0%{transform:scale(0);opacity:0} 100%{transform:scale(1);opacity:1} }
+.success h2 { font-family:'Montserrat',sans-serif; font-size:24px; font-weight:700; margin-bottom:12px; }
+.success p { font-size:14px; color:var(--white-40); line-height:1.8; }
+
+/* FLOATING COUNTRY PICKER */
+.country-picker { position: fixed; top: 16px; right: 16px; z-index: 999; }
+.country-trigger {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px 6px 8px; border-radius: 999px; cursor: pointer;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: all 0.2s; user-select: none; touch-action: manipulation;
+}
+.country-trigger:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.22); }
+.country-flag { font-size: 18px; line-height: 1; }
+.country-name { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; color: var(--white-70); letter-spacing: 0.04em; }
+.country-arrow { font-size: 9px; color: var(--gray-500); transition: transform 0.2s; }
+.country-picker.open .country-arrow { transform: rotate(180deg); }
+
+.country-dropdown {
+  display: none; position: absolute; top: calc(100% + 8px); right: 0;
+  min-width: 200px; border-radius: 14px; overflow: hidden;
+  background: #0d1525; border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+  max-height: 320px; overflow-y: auto;
+}
+.country-picker.open .country-dropdown { display: block; animation: revealUp 0.2s forwards; }
+.country-group-label { padding: 8px 14px 4px; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); }
+.country-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 14px; cursor: pointer; transition: background 0.15s;
+  font-size: 13px; color: var(--white-70);
+}
+.country-item:hover { background: rgba(124,58,237,0.15); color: var(--white); }
+.country-item.active { background: rgba(124,58,237,0.2); color: var(--white); }
+.country-item-flag { font-size: 16px; flex-shrink: 0; }
+
+.req { color: #a855f7; font-weight: 700; margin-left: 2px; }
+input.error { border-color: rgba(239,68,68,0.7) !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.15) !important; }
+.error-msg { display:none; font-size:11px; color:#fca5a5; margin-top:6px; }
+.error-msg.visible { display:block; }
+.toast { display:none; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); border-radius:10px; padding:12px 18px; font-size:13px; color:#fca5a5; margin-top:16px; text-align:center; }
+.toast.visible { display:block; }
+
+/* Touch — remove 300ms delay */
+.opt, .gate-btn, .submit-btn { touch-action: manipulation; }
+
+/* iOS — prevent auto font size adjustment */
+body { -webkit-text-size-adjust: 100%; }
+
+/* iOS — prevent zoom on input focus (font-size must be >= 16px) */
+@media (max-width: 768px) {
+  textarea, input[type="text"], input[type="email"], input[type="tel"] { font-size: 16px; }
+}
+
+/* ── TABLET (≤ 660px) ── */
+@media (max-width: 660px) {
+  .header { padding: 48px 20px 36px; }
+  .container { padding: 28px 16px 80px; }
+  .gate-card { padding: 32px 20px; }
+  .gate-btn { padding: 18px 12px; }
+}
+
+/* ── MOBILE (≤ 480px) ── */
+@media (max-width: 480px) {
+  .header { padding: 36px 16px 28px; }
+  .header p { font-size: 14px; }
+  .header-badge { font-size: 9px; padding: 5px 14px; }
+
+  .container { padding: 20px 12px 72px; }
+
+  .gate-card { padding: 28px 16px; }
+  .gate-title { font-size: 20px; }
+  .gate-sub { font-size: 12px; margin-bottom: 24px; }
+  .gate-btn-label { font-size: 14px; }
+  .gate-btn-desc { font-size: 11px; }
+
+  .section-header { padding: 18px 16px 14px; gap: 10px; }
+  .section-num { width: 30px; height: 30px; font-size: 12px; border-radius: 8px; }
+  .section-title { font-size: 14px; }
+
+  .q { padding: 18px 16px; }
+  .q-label { font-size: 13px; }
+  .q-hint { font-size: 11px; }
+
+  .opts { grid-template-columns: 1fr; }
+  .opt { padding: 12px 12px; }
+  .opt-text { font-size: 13px; }
+
+  .submit-btn { width: 100%; padding: 16px 24px; font-size: 12px; }
+  .submit-note { font-size: 11px; }
+
+  .success { padding: 48px 20px; }
+  .success h2 { font-size: 20px; }
+  .success p { font-size: 13px; }
+
+  .range-value { font-size: 22px; }
+  .range-labels { font-size: 10px; }
+}
+
+/* ── SMALL MOBILE (≤ 360px) ── */
+@media (max-width: 360px) {
+  .header h1 { font-size: 24px; }
+  .q { padding: 14px 12px; }
+  .section-header { padding: 14px 12px; }
+  .gate-card { padding: 24px 12px; }
+  .opt { padding: 10px 10px; }
+  .gate-btn { padding: 14px 10px; }
+}
+
+.footer { text-align:center; padding:20px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray-500); position:relative; z-index:1; }
+</style>
+</head>
+<body>
+<div class="blobs">
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+</div>
+<!-- FLOATING COUNTRY PICKER -->
+<div class="country-picker" id="countryPicker">
+<div class="country-trigger" onclick="toggleCountry()">
+<span class="country-flag" id="selectedFlag">🇧🇷</span>
+<span class="country-name" id="selectedName">Brasil</span>
+<span class="country-arrow">▾</span>
+</div>
+<div class="country-dropdown" id="countryDropdown">
+<div class="country-group-label">América do Sul</div>
+<div class="country-item active" onclick="selectCountry('🇧🇷','Brasil')"><span class="country-item-flag">🇧🇷</span>Brasil</div>
+<div class="country-item" onclick="selectCountry('🇦🇷','Argentina')"><span class="country-item-flag">🇦🇷</span>Argentina</div>
+<div class="country-item" onclick="selectCountry('🇨🇱','Chile')"><span class="country-item-flag">🇨🇱</span>Chile</div>
+<div class="country-item" onclick="selectCountry('🇨🇴','Colômbia')"><span class="country-item-flag">🇨🇴</span>Colômbia</div>
+<div class="country-item" onclick="selectCountry('🇵🇪','Peru')"><span class="country-item-flag">🇵🇪</span>Peru</div>
+<div class="country-item" onclick="selectCountry('🇺🇾','Uruguai')"><span class="country-item-flag">🇺🇾</span>Uruguai</div>
+<div class="country-item" onclick="selectCountry('🇵🇾','Paraguai')"><span class="country-item-flag">🇵🇾</span>Paraguai</div>
+<div class="country-item" onclick="selectCountry('🇧🇴','Bolívia')"><span class="country-item-flag">🇧🇴</span>Bolívia</div>
+<div class="country-item" onclick="selectCountry('🇪🇨','Equador')"><span class="country-item-flag">🇪🇨</span>Equador</div>
+<div class="country-group-label">América do Norte e Central</div>
+<div class="country-item" onclick="selectCountry('🇺🇸','Estados Unidos')"><span class="country-item-flag">🇺🇸</span>Estados Unidos</div>
+<div class="country-item" onclick="selectCountry('🇲🇽','México')"><span class="country-item-flag">🇲🇽</span>México</div>
+<div class="country-item" onclick="selectCountry('🇨🇦','Canadá')"><span class="country-item-flag">🇨🇦</span>Canadá</div>
+<div class="country-item" onclick="selectCountry('🇵🇦','Panamá')"><span class="country-item-flag">🇵🇦</span>Panamá</div>
+<div class="country-group-label">Europa</div>
+<div class="country-item" onclick="selectCountry('🇵🇹','Portugal')"><span class="country-item-flag">🇵🇹</span>Portugal</div>
+<div class="country-item" onclick="selectCountry('🇪🇸','Espanha')"><span class="country-item-flag">🇪🇸</span>Espanha</div>
+<div class="country-item" onclick="selectCountry('🇮🇹','Itália')"><span class="country-item-flag">🇮🇹</span>Itália</div>
+<div class="country-item" onclick="selectCountry('🇫🇷','França')"><span class="country-item-flag">🇫🇷</span>França</div>
+<div class="country-item" onclick="selectCountry('🇩🇪','Alemanha')"><span class="country-item-flag">🇩🇪</span>Alemanha</div>
+<div class="country-item" onclick="selectCountry('🇬🇧','Reino Unido')"><span class="country-item-flag">🇬🇧</span>Reino Unido</div>
+<div class="country-group-label">África</div>
+<div class="country-item" onclick="selectCountry('🇦🇴','Angola')"><span class="country-item-flag">🇦🇴</span>Angola</div>
+<div class="country-item" onclick="selectCountry('🇲🇿','Moçambique')"><span class="country-item-flag">🇲🇿</span>Moçambique</div>
+<div class="country-item" onclick="selectCountry('🇨🇻','Cabo Verde')"><span class="country-item-flag">🇨🇻</span>Cabo Verde</div>
+<div class="country-group-label">Outros</div>
+<div class="country-item" onclick="selectCountry('🌍','Outro')"><span class="country-item-flag">🌍</span>Outro</div>
+</div>
+</div>
+<div class="header">
+<div class="glass header-badge"><span class="badge-dot"></span>Diagnóstico Comercial · Exclusivo</div>
+<h1 data-i18n-h1="1">Quantos clientes sua empresa<br/><span>poderia estar conquistando…<br/>mas ainda não está?</span></h1>
+<div class="line-div"></div>
+<p data-i18n="i18n-0" style="color:#22c55e;">Antes de qualquer proposta, queremos entender a fundo como o seu negócio opera e onde estão as maiores oportunidades de crescimento.</p>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+<div class="container" id="formWrap">
+<!-- ══════════════ GATE ══════════════ -->
+<div class="gate-card glass" id="gateCard">
+<div class="gate-title" data-i18n-gate-title="1">Sua empresa tem um<br/><span>time comercial?</span></div>
+<p class="gate-sub" data-i18n="i18n-1">Isso nos ajuda a direcionar as perguntas certas para o seu momento de negócio.</p>
+<div class="gate-opts">
+<div class="gate-btn" id="gateYes" onclick="openForm('sim')">
+<div class="gate-btn-icon">🏢</div>
+<div class="gate-btn-label" data-i18n="i18n-2">Sim</div>
+<div class="gate-btn-desc" data-i18n="i18n-3">Tenho vendedores, gestor ou processo comercial estruturado</div>
+</div>
+<div class="gate-btn" id="gateNo" onclick="openForm('nao')">
+<div class="gate-btn-icon">🙋</div>
+<div class="gate-btn-label" data-i18n="i18n-4">Não</div>
+<div class="gate-btn-desc" data-i18n="i18n-5">Sou eu mesmo quem atende, ou tenho um negócio local / pequeno</div>
+</div>
+</div>
+</div>
+<!-- ════════════ FORM A EMPRESA COM TIME COMERCIAL ════════════ -->
+<form id="formA" style="display:none">
+
+
+
+<input name="perfil_lead" type="hidden" value="Empresa com time comercial"/>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">✦</div><div class="section-title" data-i18n="i18n-6">Sobre Você e Seu Negócio</div></div>
+<div class="q"><div class="q-label" data-i18n="i18n-17">Qual é o seu nome? <span class="req">*</span></div><input data-i18n-placeholder="i18n-195" data-required="true" name="nome_responsavel" oninput="progA()" placeholder="Ex: João Silva" type="text"/></div>
+<div class="q"><div class="q-label" data-i18n="i18n-18">Nome da empresa</div><input data-i18n-placeholder="i18n-196" name="nome_empresa" oninput="progA()" placeholder="Ex: Silva Soluções Ltda." type="text"/></div>
+<div class="q"><div class="q-label" data-i18n="i18n-19">WhatsApp / Telefone <span class="req">*</span></div><input data-i18n-placeholder="i18n-197" data-required="true" name="whatsapp" oninput="progA()" placeholder="Ex: (11) 99999-9999" type="text"/></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-20">Qual é o seu @ no Instagram? <span class="req">*</span></div>
+<div class="q-hint" data-i18n="i18n-63">Se tiver outra rede principal (TikTok, Facebook), pode colocar também.</div>
+<input data-i18n-placeholder="i18n-198" data-required="true" name="instagram" oninput="progA()" placeholder="Ex: @seunegocio" type="text"/>
+</div>
+<div class="q">
+<div class="q-label">Website</div>
+<input name="website" oninput="progA()" placeholder="Ex: www.suaempresa.com.br" type="text"/>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-21">Em qual cidade / bairro você atua? <span class="req">*</span></div>
+<input data-i18n-placeholder="i18n-199" data-required="true" name="cidade" oninput="progA()" placeholder="Ex: Vila Mariana, São Paulo SP" type="text"/>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-22">Qual é o segmento / ramo do seu negócio?</div>
+<div class="q-hint" data-i18n="i18n-64">Ex: distribuidora de alimentos, escritório de advocacia, software B2B…</div>
+<input data-i18n-placeholder="i18n-200" name="segmento" oninput="progA()" placeholder="Descreva brevemente o que sua empresa faz" type="text"/>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-23">Seu negócio atende principalmente…</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','modelo_a',event,'A')"><input name="modelo_a" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-78">Outras empresas (B2B)</span></label>
+<label class="opt" onclick="pick(this,'r','modelo_a',event,'A')"><input name="modelo_a" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-79">Consumidor final (B2C)</span></label>
+<label class="opt" onclick="pick(this,'r','modelo_a',event,'A')"><input name="modelo_a" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-80">Os dois</span></label>
+<label class="opt" onclick="pick(this,'r','modelo_a',event,'A')"><input name="modelo_a" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-81">Poder público / governo</span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">1</div><div class="section-title" data-i18n="i18n-7">Time Comercial</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-24">Quantas pessoas trabalham diretamente com vendas hoje?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','q1',event,'A')"><input name="q1" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-82">1 a 2 vendedores</span></label>
+<label class="opt" onclick="pick(this,'r','q1',event,'A')"><input name="q1" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-83">3 a 5 vendedores</span></label>
+<label class="opt" onclick="pick(this,'r','q1',event,'A')"><input name="q1" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-84">Mais de 5</span></label>
+<label class="opt" onclick="pick(this,'r','q1',event,'A')"><input name="q1" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-85">Equipe terceirizada</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-25">Existe um processo de vendas definido (script, CRM, etapas)?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','q2',event,'A')"><input name="q2" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-86">Sim, bem estruturado</span></label>
+<label class="opt" onclick="pick(this,'r','q2',event,'A')"><input name="q2" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-87">Parcialmente</span></label>
+<label class="opt" onclick="pick(this,'r','q2',event,'A')"><input name="q2" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-88">Não, é informal</span></label>
+<label class="opt" onclick="pick(this,'r','q2',event,'A')"><input name="q2" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-89">Estamos montando agora</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-26">Vocês usam alguma ferramenta para organizar contatos e oportunidades?</div>
+<div class="q-hint" data-i18n="i18n-65">CRM, planilha, caderno, app… qualquer coisa conta.</div>
+<div class="opts">
+<label class="opt checkbox" onclick="pick(this,'c','ferramentas',event,'A')"><input name="ferramentas" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-90">Planilha Excel / Google</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','ferramentas',event,'A')"><input name="ferramentas" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-91">CRM (RD, HubSpot…)</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','ferramentas',event,'A')"><input name="ferramentas" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-92">WhatsApp apenas</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','ferramentas',event,'A')"><input name="ferramentas" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-93">Nenhuma</span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">2</div><div class="section-title" data-i18n="i18n-8">De onde vêm seus clientes?</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-27">Quais canais geram mais clientes para vocês hoje?</div>
+<div class="q-hint" data-i18n="i18n-66">Selecione todos que se aplicam.</div>
+<div class="opts">
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-94">Indicação de clientes</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-95">Visita presencial</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-96">Google orgânico / SEO</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-97">Instagram / TikTok</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-98">WhatsApp ativo</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-99">LinkedIn</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-100">Anúncios pagos</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','canais',event,'A')"><input name="canais" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-101">Feiras e eventos</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-28">Se tivesse que apontar um canal principal, qual seria?</div>
+<textarea data-i18n-placeholder="i18n-201" name="canal_principal" oninput="progA()" placeholder="Ex: a maioria dos nossos clientes chega por indicação de quem já comprou…"></textarea>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-29">Qual é o faturamento médio mensal da empresa?</div>
+<div class="q-hint" data-i18n="i18n-67">Usado apenas para calibrar a estratégia não é compartilhado fora da reunião.</div>
+<div class="opts single">
+<label class="opt" onclick="pick(this,'r','faturamento',event,'A')"><input name="faturamento" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="fat-0"></span></label>
+<label class="opt" onclick="pick(this,'r','faturamento',event,'A')"><input name="faturamento" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="fat-1"></span></label>
+<label class="opt" onclick="pick(this,'r','faturamento',event,'A')"><input name="faturamento" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="fat-2"></span></label>
+<label class="opt" onclick="pick(this,'r','faturamento',event,'A')"><input name="faturamento" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="fat-3"></span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">3</div><div class="section-title" data-i18n="i18n-9">Prospecção Ativa</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-30">Vocês fazem alguma ação de prospecção ativa hoje?</div>
+<div class="q-hint" data-i18n="i18n-68">Sair em busca de clientes ao invés de esperar eles chegarem.</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','prospeccao',event,'A')"><input name="prospeccao" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-102">Sim, estruturada</span></label>
+<label class="opt" onclick="pick(this,'r','prospeccao',event,'A')"><input name="prospeccao" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-103">Sim, esporadicamente</span></label>
+<label class="opt" onclick="pick(this,'r','prospeccao',event,'A')"><input name="prospeccao" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-104">Não, esperamos o cliente</span></label>
+<label class="opt" onclick="pick(this,'r','prospeccao',event,'A')"><input name="prospeccao" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-105">Queremos começar</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-31">Quando prospectam, como costumam abordar?</div>
+<div class="opts">
+<label class="opt checkbox" onclick="pick(this,'c','abordagem',event,'A')"><input name="abordagem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-106">Visita presencial</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','abordagem',event,'A')"><input name="abordagem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-107">Ligação telefônica</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','abordagem',event,'A')"><input name="abordagem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-108">WhatsApp frio</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','abordagem',event,'A')"><input name="abordagem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-109">E-mail</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','abordagem',event,'A')"><input name="abordagem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-110">LinkedIn</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','abordagem',event,'A')"><input name="abordagem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-111">Não fazemos</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-32">Vocês têm uma lista de clientes potenciais mapeados?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','lista',event,'A')"><input name="lista" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-112">Sim, atualizada</span></label>
+<label class="opt" onclick="pick(this,'r','lista',event,'A')"><input name="lista" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-113">Temos, desatualizada</span></label>
+<label class="opt" onclick="pick(this,'r','lista',event,'A')"><input name="lista" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-114">Não temos lista</span></label>
+<label class="opt" onclick="pick(this,'r','lista',event,'A')"><input name="lista" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-115">Estamos montando</span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">4</div><div class="section-title" data-i18n="i18n-10">Clientes e Conversão</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-33">Como você descreveria o perfil do cliente que mais compra de vocês hoje?</div>
+<div class="q-hint" data-i18n="i18n-69">Pode ser por cargo, porte de empresa, setor, região…</div>
+<textarea data-i18n-placeholder="i18n-202" name="perfil_cliente" oninput="progA()" placeholder="Ex: gerentes de compras de indústrias do interior de SP com faturamento acima de R$ 5M…"></textarea>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-34">Quantos clientes ativos vocês têm hoje?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','ativos',event,'A')"><input name="ativos" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-116">Menos de 10</span></label>
+<label class="opt" onclick="pick(this,'r','ativos',event,'A')"><input name="ativos" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-117">10 a 30</span></label>
+<label class="opt" onclick="pick(this,'r','ativos',event,'A')"><input name="ativos" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-118">30 a 80</span></label>
+<label class="opt" onclick="pick(this,'r','ativos',event,'A')"><input name="ativos" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-119">Mais de 80</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-35">Já trabalharam com alguma agência ou prestador de marketing?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','agencia',event,'A')"><input name="agencia" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-120">Sim, ainda trabalhamos</span></label>
+<label class="opt" onclick="pick(this,'r','agencia',event,'A')"><input name="agencia" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-121">Sim, mas encerramos</span></label>
+<label class="opt" onclick="pick(this,'r','agencia',event,'A')"><input name="agencia" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-122">Nunca contratamos</span></label>
+<label class="opt" onclick="pick(this,'r','agencia',event,'A')"><input name="agencia" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-123">Fizemos internamente</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-36">Se já trabalhou com agência por que encerrou ou o que faltou?</div>
+<div class="q-hint" data-i18n="i18n-70">Sem julgamentos. Isso nos ajuda a entender o que não pode se repetir.</div>
+<textarea data-i18n-placeholder="i18n-203" name="agencia_motivo" oninput="progA()" placeholder="Ex: falta de resultado, comunicação ruim, não entendiam nosso mercado…"></textarea>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-37">O que normalmente trava o fechamento de um cliente novo?</div>
+<div class="opts">
+<label class="opt checkbox" onclick="pick(this,'c','objecoes',event,'A')"><input name="objecoes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-124">Preço vs concorrente</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objecoes',event,'A')"><input name="objecoes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-125">Desconfiança no produto/serviço</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objecoes',event,'A')"><input name="objecoes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-126">Aprovação interna lenta</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objecoes',event,'A')"><input name="objecoes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-127">Fidelidade ao concorrente atual</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objecoes',event,'A')"><input name="objecoes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-128">Prazo / entrega</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objecoes',event,'A')"><input name="objecoes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-129">Não sabemos o motivo</span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">5</div><div class="section-title" data-i18n="i18n-11">Marketing Atual</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-38">Vocês já investiram em marketing digital antes?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','mkt',event,'A')"><input name="mkt" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-130">Sim, com bons resultados</span></label>
+<label class="opt" onclick="pick(this,'r','mkt',event,'A')"><input name="mkt" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-131">Sim, sem retorno claro</span></label>
+<label class="opt" onclick="pick(this,'r','mkt',event,'A')"><input name="mkt" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-132">Nunca contratamos</span></label>
+<label class="opt" onclick="pick(this,'r','mkt',event,'A')"><input name="mkt" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-133">Fizemos internamente</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-39">Com qual frequência postam nas redes sociais hoje?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','freq',event,'A')"><input name="freq" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-134">Todos os dias</span></label>
+<label class="opt" onclick="pick(this,'r','freq',event,'A')"><input name="freq" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-135">Algumas vezes/semana</span></label>
+<label class="opt" onclick="pick(this,'r','freq',event,'A')"><input name="freq" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-136">Esporadicamente</span></label>
+<label class="opt" onclick="pick(this,'r','freq',event,'A')"><input name="freq" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-137">Quase nunca / parou</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-40">Já rodaram anúncios pagos (Google Ads, Meta Ads)?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','ads',event,'A')"><input name="ads" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-138">Sim, rodamos agora</span></label>
+<label class="opt" onclick="pick(this,'r','ads',event,'A')"><input name="ads" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-139">Já rodamos, paramos</span></label>
+<label class="opt" onclick="pick(this,'r','ads',event,'A')"><input name="ads" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-140">Nunca rodamos</span></label>
+<label class="opt" onclick="pick(this,'r','ads',event,'A')"><input name="ads" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-141">Temos interesse</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-41">Quem você considera o principal concorrente hoje?</div>
+<div class="q-hint" data-i18n="i18n-71">Pode ser uma empresa, um tipo de solução ou até um comportamento do mercado.</div>
+<textarea data-i18n-placeholder="i18n-204" name="concorrente" oninput="progA()" placeholder="Ex: empresa X que tem preço menor, ou plataformas como Y que fazem o cliente resolver sozinho…"></textarea>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">6</div><div class="section-title" data-i18n="i18n-12">Metas e Visão</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-42">Principal objetivo comercial nos próximos 12 meses?</div>
+<div class="opts single">
+<label class="opt" onclick="pick(this,'r','objetivo',event,'A')"><input name="objetivo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-142">Aumentar o número de clientes novos</span></label>
+<label class="opt" onclick="pick(this,'r','objetivo',event,'A')"><input name="objetivo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-143">Vender mais para quem já é cliente</span></label>
+<label class="opt" onclick="pick(this,'r','objetivo',event,'A')"><input name="objetivo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-144">Expandir para outras regiões</span></label>
+<label class="opt" onclick="pick(this,'r','objetivo',event,'A')"><input name="objetivo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-145">Lançar um novo produto ou serviço</span></label>
+<label class="opt" onclick="pick(this,'r','objetivo',event,'A')"><input name="objetivo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-146">Fortalecer marca e autoridade no setor</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-43">Qual é o maior desafio comercial que vocês enfrentam hoje?</div>
+<textarea data-i18n-placeholder="i18n-205" name="desafio" oninput="progA()" placeholder="Pode ser algo operacional, de mercado, concorrência… qualquer coisa que trava o crescimento."></textarea>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-44">Em uma escala de 1 a 10, como você avalia a presença digital da sua empresa hoje?</div>
+<div class="range-wrap">
+<input id="rngA" max="10" min="1" name="presenca_digital" oninput="document.getElementById('rvalA').textContent=this.value;progA()" type="range" value="5"/>
+<div class="range-labels"><span data-i18n="i18n-213">Praticamente invisível</span><span data-i18n="i18n-214">Muito forte</span></div>
+<div class="range-value" id="rvalA">5</div>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-45">Quanto você poderia disponibilizar por mês em budget para tráfego pago?</div>
+<div class="q-hint" data-i18n="i18n-72">Isso nos ajuda a recomendar a estratégia mais realista para o seu momento atual.</div>
+<div class="opts single">
+<label class="opt" onclick="pick(this,'r','budget',event,'A')"><input name="budget" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-a-0"></span></label>
+<label class="opt" onclick="pick(this,'r','budget',event,'A')"><input name="budget" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-a-1"></span></label>
+<label class="opt" onclick="pick(this,'r','budget',event,'A')"><input name="budget" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-a-2"></span></label>
+<label class="opt" onclick="pick(this,'r','budget',event,'A')"><input name="budget" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-a-3"></span></label>
+<label class="opt" onclick="pick(this,'r','budget',event,'A')"><input name="budget" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-a-4"></span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-46">Algo que sente que poderia fazer mas ainda não faz no comercial ou marketing?</div>
+<textarea data-i18n-placeholder="i18n-206" name="oportunidade" oninput="progA()" placeholder="Fique à vontade para ser direto. Isso nos ajuda a entender o que faz sentido propor."></textarea>
+</div>
+</div>
+<div class="submit-wrap" id="submitWrapA">
+<button class="submit-btn" data-i18n="i18n-187" type="submit">Enviar Respostas</button>
+<div class="submit-note" data-i18n="i18n-189" style="color:#22c55e;">Suas respostas serão analisadas pela equipe Maranata antes da reunião.</div>
+<div class="toast" data-i18n="i18n-191" id="toastA">Preencha os campos obrigatórios (*) antes de enviar.</div>
+</div>
+</form>
+<!-- ════════════ FORM B MICRO EMPREENDEDOR ════════════ -->
+<form id="formB" style="display:none">
+
+
+
+<input name="perfil_lead" type="hidden" value="Micro empreendedor / negócio local"/>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">✦</div><div class="section-title" data-i18n="i18n-13">Sobre Você e Seu Negócio</div></div>
+<div class="q"><div class="q-label" data-i18n="i18n-47">Qual é o seu nome? <span class="req">*</span></div><input data-i18n-placeholder="i18n-207" data-required="true" name="nome_responsavel" oninput="progB()" placeholder="Ex: Ana Paula" type="text"/></div>
+<div class="q"><div class="q-label" data-i18n="i18n-48">WhatsApp / Telefone <span class="req">*</span></div><input data-i18n-placeholder="i18n-208" data-required="true" name="whatsapp" oninput="progB()" placeholder="Ex: (11) 99999-9999" type="tel"/></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-49">Qual é o seu @ no Instagram? <span class="req">*</span></div>
+<div class="q-hint" data-i18n="i18n-73">Se tiver outra rede principal (TikTok, Facebook), pode colocar também.</div>
+<input data-i18n-placeholder="i18n-209" data-required="true" name="instagram" oninput="progB()" placeholder="Ex: @seunegocio" type="text"/>
+</div>
+<div class="q">
+<div class="q-label">Website</div>
+<input name="website" oninput="progB()" placeholder="Ex: www.seunegocio.com.br" type="text"/>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-50">Em qual cidade / bairro você atua? <span class="req">*</span></div>
+<input data-i18n-placeholder="i18n-210" data-required="true" name="cidade" oninput="progB()" placeholder="Ex: Vila Mariana, São Paulo SP" type="text"/>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-51">Qual é o seu nicho / o que você faz exatamente?</div>
+<div class="q-hint" data-i18n="i18n-74">Seja específico isso nos ajuda a entender melhor o seu mercado.</div>
+<input data-i18n-placeholder="i18n-211" name="nicho_especifico" oninput="progB()" placeholder="Ex: manicure a domicílio, personal trainer, floricultura, coach financeiro…" type="text"/>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">1</div><div class="section-title" data-i18n="i18n-14">Como seus clientes chegam até você?</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-52">De onde vem a maioria dos seus clientes hoje?</div>
+<div class="q-hint" data-i18n="i18n-75">Selecione todos que se aplicam.</div>
+<div class="opts">
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-147">Indicação boca a boca</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-148">Passam na frente e entram</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-149">Google / Google Maps</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-150">Instagram / TikTok</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-151">WhatsApp</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-152">Aplicativo de Delivery</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-153">Anúncios pagos</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','origem',event,'B')"><input name="origem" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-154">Não sei dizer</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-53">Seus clientes costumam voltar ou são sempre clientes novos?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','retorno',event,'B')"><input name="retorno" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-155">Maioria volta sempre</span></label>
+<label class="opt" onclick="pick(this,'r','retorno',event,'B')"><input name="retorno" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-156">Metade e metade</span></label>
+<label class="opt" onclick="pick(this,'r','retorno',event,'B')"><input name="retorno" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-157">Maioria é cliente novo</span></label>
+<label class="opt" onclick="pick(this,'r','retorno',event,'B')"><input name="retorno" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-158">Não acompanho</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-54">Você tem dias ou horários com pouco movimento?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','fluxo',event,'B')"><input name="fluxo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-159">Sim, dias específicos</span></label>
+<label class="opt" onclick="pick(this,'r','fluxo',event,'B')"><input name="fluxo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-160">Sim, fora do horário de pico</span></label>
+<label class="opt" onclick="pick(this,'r','fluxo',event,'B')"><input name="fluxo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-161">Movimento estável</span></label>
+<label class="opt" onclick="pick(this,'r','fluxo',event,'B')"><input name="fluxo" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-162">É sempre cheio</span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">2</div><div class="section-title" data-i18n="i18n-15">Presença Digital</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-55">Você tem perfil ativo nas redes sociais?</div>
+<div class="opts">
+<label class="opt checkbox" onclick="pick(this,'c','redes',event,'B')"><input name="redes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-163">Instagram</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','redes',event,'B')"><input name="redes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-164">TikTok</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','redes',event,'B')"><input name="redes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-165">Facebook</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','redes',event,'B')"><input name="redes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-166">Google Meu Negócio</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','redes',event,'B')"><input name="redes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-167">WhatsApp Business</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','redes',event,'B')"><input name="redes" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-168">Não tenho nenhum</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-56">Com qual frequência você posta conteúdo hoje?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','freq_b',event,'B')"><input name="freq_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-169">Todo dia</span></label>
+<label class="opt" onclick="pick(this,'r','freq_b',event,'B')"><input name="freq_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-170">Algumas vezes/semana</span></label>
+<label class="opt" onclick="pick(this,'r','freq_b',event,'B')"><input name="freq_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-171">Às vezes / irregular</span></label>
+<label class="opt" onclick="pick(this,'r','freq_b',event,'B')"><input name="freq_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-172">Quase não posto</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-57">Você aparece em fotos ou vídeos do seu negócio?</div>
+<div class="opts single">
+<label class="opt" onclick="pick(this,'r','aparece',event,'B')"><input name="aparece" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-173">Sim, apareço sempre</span></label>
+<label class="opt" onclick="pick(this,'r','aparece',event,'B')"><input name="aparece" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-174">Às vezes</span></label>
+<label class="opt" onclick="pick(this,'r','aparece',event,'B')"><input name="aparece" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-175">Prefiro mostrar só o trabalho</span></label>
+<label class="opt" onclick="pick(this,'r','aparece',event,'B')"><input name="aparece" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-176">Nunca apareci, mas toparia tentar</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-58">Você já investiu em anúncios pagos para o seu negócio?</div>
+<div class="opts">
+<label class="opt" onclick="pick(this,'r','ads_b',event,'B')"><input name="ads_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-177">Sim, com resultado</span></label>
+<label class="opt" onclick="pick(this,'r','ads_b',event,'B')"><input name="ads_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-178">Sim, não funcionou</span></label>
+<label class="opt" onclick="pick(this,'r','ads_b',event,'B')"><input name="ads_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-179">Nunca investi</span></label>
+<label class="opt" onclick="pick(this,'r','ads_b',event,'B')"><input name="ads_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-180">Tenho interesse</span></label>
+</div>
+</div>
+</div>
+<div class="section glass hidden-section">
+<div class="section-header"><div class="section-num">3</div><div class="section-title" data-i18n="i18n-16">Metas e Desafios</div></div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-59">Qual é o seu principal objetivo agora?</div>
+<div class="q-hint" data-i18n="i18n-76">Selecione todos que se aplicam.</div>
+<div class="opts single">
+<label class="opt checkbox" onclick="pick(this,'c','objetivo_b',event,'B')"><input name="objetivo_b" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-181">Atrair mais clientes novos</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objetivo_b',event,'B')"><input name="objetivo_b" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-182">Fazer os clientes voltarem mais</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objetivo_b',event,'B')"><input name="objetivo_b" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-183">Ficar mais conhecido na região</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objetivo_b',event,'B')"><input name="objetivo_b" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-184">Crescer e contratar mais pessoas</span></label>
+<label class="opt checkbox" onclick="pick(this,'c','objetivo_b',event,'B')"><input name="objetivo_b" type="checkbox"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-185">Abrir uma segunda unidade</span></label>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-60">O que você sente que falta hoje para o seu negócio crescer mais?</div>
+<textarea data-i18n-placeholder="i18n-212" name="desafio_b" oninput="progB()" placeholder="Pode ser falta de tempo, de dinheiro, de conhecimento em marketing, de clientes… fique à vontade."></textarea>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-61">Em uma escala de 1 a 10, como você avalia sua presença digital hoje?</div>
+<div class="range-wrap">
+<input id="rngB" max="10" min="1" name="presenca_digital" oninput="document.getElementById('rvalB').textContent=this.value;progB()" type="range" value="5"/>
+<div class="range-labels"><span data-i18n="i18n-215">Praticamente invisível</span><span data-i18n="i18n-216">Muito forte</span></div>
+<div class="range-value" id="rvalB">5</div>
+</div>
+</div>
+<div class="q">
+<div class="q-label" data-i18n="i18n-62">Quanto você poderia investir por mês em anúncios?</div>
+<div class="q-hint" data-i18n="i18n-77">Isso nos ajuda a montar uma estratégia realista para o seu bolso.</div>
+<div class="opts single">
+<label class="opt" onclick="pick(this,'r','budget_b',event,'B')"><input name="budget_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-b-0"></span></label>
+<label class="opt" onclick="pick(this,'r','budget_b',event,'B')"><input name="budget_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-b-1"></span></label>
+<label class="opt" onclick="pick(this,'r','budget_b',event,'B')"><input name="budget_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-b-2"></span></label>
+<label class="opt" onclick="pick(this,'r','budget_b',event,'B')"><input name="budget_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-money="bud-b-3"></span></label>
+<label class="opt" onclick="pick(this,'r','budget_b',event,'B')"><input name="budget_b" type="radio"/><div class="opt-mark"></div><span class="opt-text" data-i18n="i18n-186">Ainda não sei / preciso de orientação</span></label>
+</div>
+</div>
+</div>
+<div class="submit-wrap" id="submitWrapB">
+<button class="submit-btn" data-i18n="i18n-188" type="submit">Enviar Respostas</button>
+<div class="submit-note" data-i18n="i18n-190" style="color:#22c55e;">Suas respostas serão analisadas pela equipe Maranata antes da reunião.</div>
+<div class="toast" data-i18n="i18n-192" id="toastB">Preencha os campos obrigatórios (*) antes de enviar.</div>
+</div>
+</form>
+<!-- SUCCESS -->
+<!-- THANK YOU PAGE -->
+<div id="thankyouPage" style="display:none; position:fixed; inset:0; z-index:9999; background:#050a14; overflow-y:auto;">
+  <div class="blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 20px; position:relative; z-index:1; text-align:center;">
+    <div style="width:80px;height:80px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;box-shadow:0 0 60px rgba(124,58,237,0.5);animation:pop 0.6s cubic-bezier(0.34,1.56,0.64,1);">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+        <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#9ca3af;margin-bottom:24px;">Maranata Marketing</div>
+    <h1 id="tyTitle" style="font-family:'Montserrat',sans-serif;font-size:clamp(28px,6vw,46px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:16px;color:#fff;">
+      Respostas <span style="background:linear-gradient(135deg,#fff 0%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">recebidas!</span>
+    </h1>
+    <div style="width:40px;height:1px;background:linear-gradient(90deg,#7c3aed,transparent);margin:0 auto 20px;"></div>
+    <p id="tyMsg" style="font-size:16px;color:rgba(255,255,255,0.5);max-width:440px;line-height:1.8;font-weight:300;margin-bottom:48px;">
+      Muito obrigado pelo seu tempo.<br>A equipe da Maranata vai analisar tudo e entrar em contato em breve para a próxima etapa.
+    </p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 24px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 2s infinite;flex-shrink:0;"></div>
+        <span id="tyStepMsg" style="font-size:13px;color:rgba(255,255,255,0.6);">Aguarde o contato da nossa equipe.</span>
+      </div>
+      <a href="https://www.instagram.com/maranata_marketing/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 8px 32px rgba(124,58,237,0.4);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @maranata_marketing
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+<div class="footer">
+<div>Formulário preparado por <a href="https://www.instagram.com/maranata_marketing/" style="text-decoration:none;background:linear-gradient(135deg,#a855f7,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:600;" target="_blank">@maranata_marketing</a></div>
+</div>
+<script>
+var base = window.location.href.replace(/[^/]*$/, '');
+
+// ── i18n TRANSLATIONS ────────────────────────────────────────
+var i18nData = {
+  'pt-BR': {"i18n-0": "Antes de qualquer proposta, queremos entender a fundo como o seu negócio opera e onde estão as maiores oportunidades de crescimento.", "i18n-1": "Isso nos ajuda a direcionar as perguntas certas para o seu momento de negócio.", "i18n-2": "Sim", "i18n-3": "Tenho vendedores, gestor ou processo comercial estruturado", "i18n-4": "Não", "i18n-5": "Sou eu mesmo quem atende, ou tenho um negócio local / pequeno", "i18n-6": "Sobre Você e Seu Negócio", "i18n-7": "Time Comercial", "i18n-8": "De onde vêm seus clientes?", "i18n-9": "Prospecção Ativa", "i18n-10": "Clientes e Conversão", "i18n-11": "Marketing Atual", "i18n-12": "Metas e Visão", "i18n-13": "Sobre Você e Seu Negócio", "i18n-14": "Como seus clientes chegam até você?", "i18n-15": "Presença Digital", "i18n-16": "Metas e Desafios", "i18n-17": "Qual é o seu nome? <span class=\"req\">*</span>", "i18n-18": "Nome da empresa", "i18n-19": "WhatsApp / Telefone <span class=\"req\">*</span>", "i18n-20": "Qual é o seu @ no Instagram? <span class=\"req\">*</span>", "i18n-21": "Em qual cidade / bairro você atua? <span class=\"req\">*</span>", "i18n-22": "Qual é o segmento / ramo do seu negócio?", "i18n-23": "Seu negócio atende principalmente…", "i18n-24": "Quantas pessoas trabalham diretamente com vendas hoje?", "i18n-25": "Existe um processo de vendas definido (script, CRM, etapas)?", "i18n-26": "Vocês usam alguma ferramenta para organizar contatos e oportunidades?", "i18n-27": "Quais canais geram mais clientes para vocês hoje?", "i18n-28": "Se tivesse que apontar um canal principal, qual seria?", "i18n-29": "Qual é o faturamento médio mensal da empresa?", "i18n-30": "Vocês fazem alguma ação de prospecção ativa hoje?", "i18n-31": "Quando prospectam, como costumam abordar?", "i18n-32": "Vocês têm uma lista de clientes potenciais mapeados?", "i18n-33": "Como você descreveria o perfil do cliente que mais compra de vocês hoje?", "i18n-34": "Quantos clientes ativos vocês têm hoje?", "i18n-35": "Já trabalharam com alguma agência ou prestador de marketing?", "i18n-36": "Se já trabalhou com agência — por que encerrou ou o que faltou?", "i18n-37": "O que normalmente trava o fechamento de um cliente novo?", "i18n-38": "Vocês já investiram em marketing digital antes?", "i18n-39": "Com qual frequência postam nas redes sociais hoje?", "i18n-40": "Já rodaram anúncios pagos (Google Ads, Meta Ads)?", "i18n-41": "Quem você considera o principal concorrente hoje?", "i18n-42": "Principal objetivo comercial nos próximos 12 meses?", "i18n-43": "Qual é o maior desafio comercial que vocês enfrentam hoje?", "i18n-44": "Em uma escala de 1 a 10, como você avalia a presença digital da sua empresa hoje?", "i18n-45": "Quanto você poderia disponibilizar por mês em budget para tráfego pago?", "i18n-46": "Algo que sente que poderia fazer mas ainda não faz no comercial ou marketing?", "i18n-47": "Qual é o seu nome? <span class=\"req\">*</span>", "i18n-48": "WhatsApp / Telefone <span class=\"req\">*</span>", "i18n-49": "Qual é o seu @ no Instagram? <span class=\"req\">*</span>", "i18n-50": "Em qual cidade / bairro você atua? <span class=\"req\">*</span>", "i18n-51": "Qual é o seu nicho / o que você faz exatamente?", "i18n-52": "De onde vem a maioria dos seus clientes hoje?", "i18n-53": "Seus clientes costumam voltar ou são sempre clientes novos?", "i18n-54": "Você tem dias ou horários com pouco movimento?", "i18n-55": "Você tem perfil ativo nas redes sociais?", "i18n-56": "Com qual frequência você posta conteúdo hoje?", "i18n-57": "Você aparece em fotos ou vídeos do seu negócio?", "i18n-58": "Você já investiu em anúncios pagos para o seu negócio?", "i18n-59": "Qual é o seu principal objetivo agora?", "i18n-60": "O que você sente que falta hoje para o seu negócio crescer mais?", "i18n-61": "Em uma escala de 1 a 10, como você avalia sua presença digital hoje?", "i18n-62": "Quanto você poderia investir por mês em anúncios?", "i18n-63": "Se tiver outra rede principal (TikTok, Facebook), pode colocar também.", "i18n-64": "Ex: distribuidora de alimentos, escritório de advocacia, software B2B…", "i18n-65": "CRM, planilha, caderno, app… qualquer coisa conta.", "i18n-66": "Selecione todos que se aplicam.", "i18n-67": "Usado apenas para calibrar a estratégia — não é compartilhado fora da reunião.", "i18n-68": "Sair em busca de clientes — ao invés de esperar eles chegarem.", "i18n-69": "Pode ser por cargo, porte de empresa, setor, região…", "i18n-70": "Sem julgamentos. Isso nos ajuda a entender o que não pode se repetir.", "i18n-71": "Pode ser uma empresa, um tipo de solução ou até um comportamento do mercado.", "i18n-72": "Isso nos ajuda a recomendar a estratégia mais realista para o seu momento atual.", "i18n-73": "Se tiver outra rede principal (TikTok, Facebook), pode colocar também.", "i18n-74": "Seja específico — isso nos ajuda a entender melhor o seu mercado.", "i18n-75": "Selecione todos que se aplicam.", "i18n-76": "Selecione todos que se aplicam.", "i18n-77": "Isso nos ajuda a montar uma estratégia realista para o seu bolso.", "i18n-78": "Outras empresas (B2B)", "i18n-79": "Consumidor final (B2C)", "i18n-80": "Os dois", "i18n-81": "Poder público / governo", "i18n-82": "1 a 2 vendedores", "i18n-83": "3 a 5 vendedores", "i18n-84": "Mais de 5", "i18n-85": "Equipe terceirizada", "i18n-86": "Sim, bem estruturado", "i18n-87": "Parcialmente", "i18n-88": "Não, é informal", "i18n-89": "Estamos montando agora", "i18n-90": "Planilha Excel / Google", "i18n-91": "CRM (RD, HubSpot…)", "i18n-92": "WhatsApp apenas", "i18n-93": "Nenhuma", "i18n-94": "Indicação de clientes", "i18n-95": "Visita presencial", "i18n-96": "Google orgânico / SEO", "i18n-97": "Instagram / TikTok", "i18n-98": "WhatsApp ativo", "i18n-99": "LinkedIn", "i18n-100": "Anúncios pagos", "i18n-101": "Feiras e eventos", "i18n-102": "Sim, estruturada", "i18n-103": "Sim, esporadicamente", "i18n-104": "Não, esperamos o cliente", "i18n-105": "Queremos começar", "i18n-106": "Visita presencial", "i18n-107": "Ligação telefônica", "i18n-108": "WhatsApp frio", "i18n-109": "E-mail", "i18n-110": "LinkedIn", "i18n-111": "Não fazemos", "i18n-112": "Sim, atualizada", "i18n-113": "Temos, desatualizada", "i18n-114": "Não temos lista", "i18n-115": "Estamos montando", "i18n-116": "Menos de 10", "i18n-117": "10 a 30", "i18n-118": "30 a 80", "i18n-119": "Mais de 80", "i18n-120": "Sim, ainda trabalhamos", "i18n-121": "Sim, mas encerramos", "i18n-122": "Nunca contratamos", "i18n-123": "Fizemos internamente", "i18n-124": "Preço vs concorrente", "i18n-125": "Desconfiança no produto/serviço", "i18n-126": "Aprovação interna lenta", "i18n-127": "Fidelidade ao concorrente atual", "i18n-128": "Prazo / entrega", "i18n-129": "Não sabemos o motivo", "i18n-130": "Sim, com bons resultados", "i18n-131": "Sim, sem retorno claro", "i18n-132": "Nunca contratamos", "i18n-133": "Fizemos internamente", "i18n-134": "Todos os dias", "i18n-135": "Algumas vezes/semana", "i18n-136": "Esporadicamente", "i18n-137": "Quase nunca / parou", "i18n-138": "Sim, rodamos agora", "i18n-139": "Já rodamos, paramos", "i18n-140": "Nunca rodamos", "i18n-141": "Temos interesse", "i18n-142": "Aumentar o número de clientes novos", "i18n-143": "Vender mais para quem já é cliente", "i18n-144": "Expandir para outras regiões", "i18n-145": "Lançar um novo produto ou serviço", "i18n-146": "Fortalecer marca e autoridade no setor", "i18n-147": "Indicação boca a boca", "i18n-148": "Passam na frente e entram", "i18n-149": "Google / Google Maps", "i18n-150": "Instagram / TikTok", "i18n-151": "WhatsApp", "i18n-152": "Aplicativo de Delivery", "i18n-153": "Anúncios pagos", "i18n-154": "Não sei dizer", "i18n-155": "Maioria volta sempre", "i18n-156": "Metade e metade", "i18n-157": "Maioria é cliente novo", "i18n-158": "Não acompanho", "i18n-159": "Sim, dias específicos", "i18n-160": "Sim, fora do horário de pico", "i18n-161": "Movimento estável", "i18n-162": "É sempre cheio", "i18n-163": "Instagram", "i18n-164": "TikTok", "i18n-165": "Facebook", "i18n-166": "Google Meu Negócio", "i18n-167": "WhatsApp Business", "i18n-168": "Não tenho nenhum", "i18n-169": "Todo dia", "i18n-170": "Algumas vezes/semana", "i18n-171": "Às vezes / irregular", "i18n-172": "Quase não posto", "i18n-173": "Sim, apareço sempre", "i18n-174": "Às vezes", "i18n-175": "Prefiro mostrar só o trabalho", "i18n-176": "Nunca apareci, mas toparia tentar", "i18n-177": "Sim, com resultado", "i18n-178": "Sim, não funcionou", "i18n-179": "Nunca investi", "i18n-180": "Tenho interesse", "i18n-181": "Atrair mais clientes novos", "i18n-182": "Fazer os clientes voltarem mais", "i18n-183": "Ficar mais conhecido na região", "i18n-184": "Crescer e contratar mais pessoas", "i18n-185": "Abrir uma segunda unidade", "i18n-186": "Ainda não sei / preciso de orientação", "i18n-187": "Enviar Respostas", "i18n-188": "Enviar Respostas", "i18n-189": "Suas respostas serão analisadas pela equipe Maranata antes da reunião.", "i18n-190": "Suas respostas serão analisadas pela equipe Maranata antes da reunião.", "i18n-191": "Preencha os campos obrigatórios (*) antes de enviar.", "i18n-192": "Preencha os campos obrigatórios (*) antes de enviar.", "i18n-193": "Respostas recebidas!", "i18n-194": "Muito obrigado pelo seu tempo.<br>A equipe da Maranata vai analisar tudo e entrar em contato em breve para a próxima etapa.", "i18n-195": "Ex: João Silva", "i18n-196": "Ex: Silva Soluções Ltda.", "i18n-197": "Ex: (11) 99999-9999", "i18n-198": "Ex: @seunegocio", "i18n-199": "Ex: Vila Mariana, São Paulo — SP", "i18n-200": "Descreva brevemente o que sua empresa faz", "i18n-201": "Ex: a maioria dos nossos clientes chega por indicação de quem já comprou…", "i18n-202": "Ex: gerentes de compras de indústrias do interior de SP com faturamento acima de R$ 5M…", "i18n-203": "Ex: falta de resultado, comunicação ruim, não entendiam nosso mercado…", "i18n-204": "Ex: empresa X que tem preço menor, ou plataformas como Y que fazem o cliente resolver sozinho…", "i18n-205": "Pode ser algo operacional, de mercado, concorrência… qualquer coisa que trava o crescimento.", "i18n-206": "Fique à vontade para ser direto. Isso nos ajuda a entender o que faz sentido propor.", "i18n-207": "Ex: Ana Paula", "i18n-208": "Ex: (11) 99999-9999", "i18n-209": "Ex: @seunegocio", "i18n-210": "Ex: Vila Mariana, São Paulo — SP", "i18n-211": "Ex: manicure a domicílio, personal trainer, floricultura, coach financeiro…", "i18n-212": "Pode ser falta de tempo, de dinheiro, de conhecimento em marketing, de clientes… fique à vontade.", "i18n-213": "Praticamente invisível", "i18n-214": "Muito forte", "i18n-215": "Praticamente invisível", "i18n-216": "Muito forte"},
+  'pt-PT': {"i18n-0": "Antes de qualquer proposta, queremos compreender como o seu negócio opera e onde estão as maiores oportunidades de crescimento.", "i18n-1": "Isto ajuda-nos a direcionar as perguntas certas para o seu momento de negócio.", "i18n-2": "Sim", "i18n-3": "Tenho vendedores, gestor ou processo comercial estruturado", "i18n-4": "Não", "i18n-5": "Sou eu próprio que atendo, ou tenho um negócio local / pequeno", "i18n-6": "Sobre Si e o Seu Negócio", "i18n-7": "Equipa Comercial", "i18n-8": "De onde vêm os seus clientes?", "i18n-9": "Prospeção Ativa", "i18n-10": "Clientes e Conversão", "i18n-11": "Marketing Atual", "i18n-12": "Metas e Visão", "i18n-13": "Sobre Si e o Seu Negócio", "i18n-14": "Como chegam os seus clientes?", "i18n-15": "Presença Digital", "i18n-16": "Metas e Desafios", "i18n-17": "Qual é o seu nome? <span class=\"req\">*</span>", "i18n-18": "Nome da empresa", "i18n-19": "WhatsApp / Telefone <span class=\"req\">*</span>", "i18n-20": "Qual é o seu @ no Instagram? <span class=\"req\">*</span>", "i18n-21": "Em que cidade / bairro atua? <span class=\"req\">*</span>", "i18n-22": "Qual é o segmento / ramo do seu negócio?", "i18n-23": "O seu negócio serve principalmente…", "i18n-24": "Quantas pessoas trabalham diretamente com vendas hoje?", "i18n-25": "Existe um processo de vendas definido (script, CRM, etapas)?", "i18n-26": "Utilizam alguma ferramenta para organizar contactos e oportunidades?", "i18n-27": "Que canais geram mais clientes para vocês hoje?", "i18n-28": "Se tivesse de apontar um canal principal, qual seria?", "i18n-29": "Qual é a faturação média mensal da empresa?", "i18n-30": "Fazem alguma ação de prospeção ativa hoje?", "i18n-31": "Quando prospetam, como costumam abordar?", "i18n-32": "Têm uma lista de potenciais clientes mapeados?", "i18n-33": "Como descreveria o perfil do cliente que mais compra hoje?", "i18n-34": "Quantos clientes ativos têm hoje?", "i18n-35": "Já trabalharam com alguma agência ou prestador de marketing?", "i18n-36": "Se já trabalhou com agência — porque terminou ou o que faltou?", "i18n-37": "O que normalmente trava o fecho de um novo cliente?", "i18n-38": "Já investiram em marketing digital?", "i18n-39": "Com que frequência publicam nas redes sociais?", "i18n-40": "Já fizeram anúncios pagos (Google Ads, Meta Ads)?", "i18n-41": "Quem considera o principal concorrente hoje?", "i18n-42": "Principal objetivo comercial nos próximos 12 meses?", "i18n-43": "Qual é o maior desafio comercial que enfrentam hoje?", "i18n-44": "Numa escala de 1 a 10, como avalia a presença digital da sua empresa hoje?", "i18n-45": "Quanto poderia disponibilizar por mês em budget para tráfego pago?", "i18n-46": "Algo que sente que poderia fazer mas ainda não faz no comercial ou marketing?", "i18n-47": "Qual é o seu nome? <span class=\"req\">*</span>", "i18n-48": "WhatsApp / Telefone <span class=\"req\">*</span>", "i18n-49": "Qual é o seu @ no Instagram? <span class=\"req\">*</span>", "i18n-50": "Em que cidade / bairro atua? <span class=\"req\">*</span>", "i18n-51": "Qual é o seu nicho / o que faz exatamente?", "i18n-52": "De onde vem a maioria dos seus clientes hoje?", "i18n-53": "Os seus clientes costumam voltar ou são sempre novos?", "i18n-54": "Tem dias ou horários com pouco movimento?", "i18n-55": "Tem perfil ativo nas redes sociais?", "i18n-56": "Com que frequência publica conteúdo hoje?", "i18n-57": "Aparece em fotos ou vídeos do seu negócio?", "i18n-58": "Já investiu em anúncios pagos para o seu negócio?", "i18n-59": "Qual é o seu principal objetivo agora?", "i18n-60": "O que sente que falta hoje para o seu negócio crescer mais?", "i18n-61": "Numa escala de 1 a 10, como avalia a sua presença digital hoje?", "i18n-62": "Quanto poderia investir por mês em anúncios?", "i18n-63": "Se tiver outra rede principal (TikTok, Facebook), pode indicar também.", "i18n-64": "Ex: distribuidora de alimentos, escritório de advocacia, software B2B…", "i18n-65": "CRM, folha de cálculo, caderno, app… qualquer coisa conta.", "i18n-66": "Selecione todos os que se aplicam.", "i18n-67": "Usado apenas para calibrar a estratégia — não é partilhado fora da reunião.", "i18n-68": "Ir à procura de clientes — em vez de esperar que eles apareçam.", "i18n-69": "Pode ser por cargo, dimensão da empresa, setor, região…", "i18n-70": "Sem julgamentos. Isto ajuda-nos a perceber o que não pode repetir-se.", "i18n-71": "Pode ser uma empresa, um tipo de solução ou até um comportamento do mercado.", "i18n-72": "Isto ajuda-nos a recomendar a estratégia mais realista para o seu momento atual.", "i18n-73": "Se tiver outra rede principal (TikTok, Facebook), pode indicar também.", "i18n-74": "Seja específico — isto ajuda-nos a compreender melhor o seu mercado.", "i18n-75": "Selecione todos os que se aplicam.", "i18n-76": "Selecione todos os que se aplicam.", "i18n-77": "Isto ajuda-nos a montar uma estratégia realista para o seu orçamento.", "i18n-78": "Outras empresas (B2B)", "i18n-79": "Consumidor final (B2C)", "i18n-80": "Ambos", "i18n-81": "Setor público / governo", "i18n-82": "1 a 2 vendedores", "i18n-83": "3 a 5 vendedores", "i18n-84": "Mais de 5", "i18n-85": "Equipa externalizada", "i18n-86": "Sim, bem estruturado", "i18n-87": "Parcialmente", "i18n-88": "Não, é informal", "i18n-89": "Estamos a criar agora", "i18n-90": "Folha de cálculo Excel / Google", "i18n-91": "CRM (RD, HubSpot…)", "i18n-92": "Só WhatsApp", "i18n-93": "Nenhuma", "i18n-94": "Referência de clientes", "i18n-95": "Visita presencial", "i18n-96": "Google orgânico / SEO", "i18n-97": "Instagram / TikTok", "i18n-98": "WhatsApp ativo", "i18n-99": "LinkedIn", "i18n-100": "Anúncios pagos", "i18n-101": "Feiras e eventos", "i18n-102": "Sim, estruturada", "i18n-103": "Sim, esporadicamente", "i18n-104": "Não, esperamos o cliente", "i18n-105": "Queremos começar", "i18n-106": "Visita presencial", "i18n-107": "Chamada telefónica", "i18n-108": "WhatsApp frio", "i18n-109": "E-mail", "i18n-110": "LinkedIn", "i18n-111": "Não fazemos", "i18n-112": "Sim, atualizada", "i18n-113": "Temos, desatualizada", "i18n-114": "Não temos lista", "i18n-115": "Estamos a montar", "i18n-116": "Menos de 10", "i18n-117": "10 a 30", "i18n-118": "30 a 80", "i18n-119": "Mais de 80", "i18n-120": "Sim, ainda trabalhamos", "i18n-121": "Sim, mas terminámos", "i18n-122": "Nunca contratámos", "i18n-123": "Fizemos internamente", "i18n-124": "Preço vs concorrente", "i18n-125": "Desconfiança no produto/serviço", "i18n-126": "Aprovação interna lenta", "i18n-127": "Fidelidade ao concorrente atual", "i18n-128": "Prazo / entrega", "i18n-129": "Não sabemos o motivo", "i18n-130": "Sim, com bons resultados", "i18n-131": "Sim, sem retorno claro", "i18n-132": "Nunca contratámos", "i18n-133": "Fizemos internamente", "i18n-134": "Todos os dias", "i18n-135": "Algumas vezes/semana", "i18n-136": "Esporadicamente", "i18n-137": "Quase nunca / parou", "i18n-138": "Sim, fazemos agora", "i18n-139": "Já fizemos, parámos", "i18n-140": "Nunca fizemos", "i18n-141": "Temos interesse", "i18n-142": "Aumentar o número de novos clientes", "i18n-143": "Vender mais a quem já é cliente", "i18n-144": "Expandir para outras regiões", "i18n-145": "Lançar um novo produto ou serviço", "i18n-146": "Reforçar a marca e autoridade no setor", "i18n-147": "Referência boca a boca", "i18n-148": "Passam à frente e entram", "i18n-149": "Google / Google Maps", "i18n-150": "Instagram / TikTok", "i18n-151": "WhatsApp", "i18n-152": "Aplicação de Entrega", "i18n-153": "Anúncios pagos", "i18n-154": "Não sei dizer", "i18n-155": "A maioria volta sempre", "i18n-156": "Metade e metade", "i18n-157": "A maioria é novo cliente", "i18n-158": "Não acompanho", "i18n-159": "Sim, dias específicos", "i18n-160": "Sim, fora do horário de ponta", "i18n-161": "Movimento estável", "i18n-162": "Está sempre cheio", "i18n-163": "Instagram", "i18n-164": "TikTok", "i18n-165": "Facebook", "i18n-166": "Google Meu Negócio", "i18n-167": "WhatsApp Business", "i18n-168": "Não tenho nenhum", "i18n-169": "Todos os dias", "i18n-170": "Algumas vezes/semana", "i18n-171": "Às vezes / irregular", "i18n-172": "Quase não publico", "i18n-173": "Sim, apareço sempre", "i18n-174": "Às vezes", "i18n-175": "Prefiro mostrar só o trabalho", "i18n-176": "Nunca apareci, mas topava tentar", "i18n-177": "Sim, com resultado", "i18n-178": "Sim, não funcionou", "i18n-179": "Nunca investi", "i18n-180": "Tenho interesse", "i18n-181": "Atrair mais clientes novos", "i18n-182": "Fidelizar os clientes atuais", "i18n-183": "Ficar mais conhecido na região", "i18n-184": "Crescer e contratar mais pessoas", "i18n-185": "Abrir uma segunda unidade", "i18n-186": "Ainda não sei / preciso de orientação", "i18n-187": "Enviar Respostas", "i18n-188": "Enviar Respostas", "i18n-189": "As suas respostas serão analisadas pela equipa Maranata antes da reunião.", "i18n-190": "As suas respostas serão analisadas pela equipa Maranata antes da reunião.", "i18n-191": "Preencha os campos obrigatórios (*) antes de enviar.", "i18n-192": "Preencha os campos obrigatórios (*) antes de enviar.", "i18n-193": "Respostas recebidas!", "i18n-194": "Muito obrigado pelo tempo dispensado.<br>A equipa da Maranata vai analisar tudo e entrar em contacto em breve para a próxima etapa.", "i18n-195": "Ex: João Silva", "i18n-196": "Ex: Silva Soluções Lda.", "i18n-197": "Ex: +351 912 345 678", "i18n-198": "Ex: @seunegocio", "i18n-199": "Ex: Alfama, Lisboa", "i18n-200": "Descreva brevemente o que a sua empresa faz", "i18n-201": "Ex: a maioria dos nossos clientes chega por referência de quem já comprou…", "i18n-202": "Ex: diretores de compras de indústrias do norte de Portugal…", "i18n-203": "Ex: falta de resultado, comunicação fraca, não compreendiam o nosso mercado…", "i18n-204": "Ex: empresa X com preço mais baixo, ou plataformas como Y que permitem ao cliente resolver sozinho…", "i18n-205": "Pode ser algo operacional, de mercado, concorrência… qualquer coisa que trava o crescimento.", "i18n-206": "Fique à vontade para ser direto. Isto ajuda-nos a perceber o que faz sentido propor.", "i18n-207": "Ex: Ana Paula", "i18n-208": "Ex: +351 912 345 678", "i18n-209": "Ex: @seunegocio", "i18n-210": "Ex: Alfama, Lisboa", "i18n-211": "Ex: manicure ao domicílio, personal trainer, florista, coach financeiro…", "i18n-212": "Pode ser falta de tempo, de dinheiro, de conhecimento em marketing, de clientes… fique à vontade.", "i18n-213": "Praticamente invisível", "i18n-214": "Muito forte", "i18n-215": "Praticamente invisível", "i18n-216": "Muito forte"},
+  'en': {"i18n-0": "Before any proposal, we want to deeply understand how your business operates and where the biggest growth opportunities are.", "i18n-1": "This helps us direct the right questions for your current business stage.", "i18n-2": "Yes", "i18n-3": "I have salespeople, a manager, or a structured sales process", "i18n-4": "No", "i18n-5": "I handle it myself, or I have a small / local business", "i18n-6": "About You and Your Business", "i18n-7": "Sales Team", "i18n-8": "Where do your clients come from?", "i18n-9": "Active Prospecting", "i18n-10": "Clients and Conversion", "i18n-11": "Current Marketing", "i18n-12": "Goals and Vision", "i18n-13": "About You and Your Business", "i18n-14": "How do your clients find you?", "i18n-15": "Digital Presence", "i18n-16": "Goals and Challenges", "i18n-17": "What is your name? <span class=\"req\">*</span>", "i18n-18": "Company name", "i18n-19": "WhatsApp / Phone <span class=\"req\">*</span>", "i18n-20": "Your Instagram @? <span class=\"req\">*</span>", "i18n-21": "Which city / neighborhood do you operate in? <span class=\"req\">*</span>", "i18n-22": "What is your business segment / industry?", "i18n-23": "Your business mainly serves…", "i18n-24": "How many people work directly in sales today?", "i18n-25": "Is there a defined sales process (script, CRM, stages)?", "i18n-26": "Do you use any tool to organize contacts and opportunities?", "i18n-27": "Which channels bring the most clients to you today?", "i18n-28": "If you had to name one main channel, which would it be?", "i18n-29": "What is the company's average monthly revenue?", "i18n-30": "Do you do any active prospecting today?", "i18n-31": "When you prospect, how do you usually approach?", "i18n-32": "Do you have a mapped list of potential clients?", "i18n-33": "How would you describe the profile of the client who buys most from you today?", "i18n-34": "How many active clients do you have today?", "i18n-35": "Have you ever worked with a marketing agency or provider?", "i18n-36": "If you worked with an agency — why did it end or what was missing?", "i18n-37": "What usually blocks the closing of a new client?", "i18n-38": "Have you ever invested in digital marketing?", "i18n-39": "How often do you post on social media today?", "i18n-40": "Have you ever run paid ads (Google Ads, Meta Ads)?", "i18n-41": "Who do you consider your main competitor today?", "i18n-42": "Main commercial goal for the next 12 months?", "i18n-43": "What is the biggest commercial challenge you face today?", "i18n-44": "On a scale of 1 to 10, how do you rate your company's digital presence today?", "i18n-45": "How much could you allocate per month for paid traffic budget?", "i18n-46": "Anything you feel you could do but aren't doing in sales or marketing?", "i18n-47": "What is your name? <span class=\"req\">*</span>", "i18n-48": "WhatsApp / Phone <span class=\"req\">*</span>", "i18n-49": "Your Instagram @? <span class=\"req\">*</span>", "i18n-50": "Which city / neighborhood do you operate in? <span class=\"req\">*</span>", "i18n-51": "What is your niche / what do you do exactly?", "i18n-52": "Where does most of your clientele come from today?", "i18n-53": "Do your clients usually return or are they always new?", "i18n-54": "Do you have slow days or time slots?", "i18n-55": "Do you have an active social media profile?", "i18n-56": "How often do you post content today?", "i18n-57": "Do you appear in photos or videos of your business?", "i18n-58": "Have you ever invested in paid ads for your business?", "i18n-59": "What is your main goal right now?", "i18n-60": "What do you feel is missing today to grow your business more?", "i18n-61": "On a scale of 1 to 10, how do you rate your digital presence today?", "i18n-62": "How much could you invest per month in ads?", "i18n-63": "If you have another main network (TikTok, Facebook), you can add it too.", "i18n-64": "E.g.: food distributor, law firm, B2B software…", "i18n-65": "CRM, spreadsheet, notebook, app… anything counts.", "i18n-66": "Select all that apply.", "i18n-67": "Used only to calibrate the strategy — not shared outside the meeting.", "i18n-68": "Going out to find clients — instead of waiting for them to come to you.", "i18n-69": "Can be by role, company size, sector, region…", "i18n-70": "No judgment. This helps us understand what must not happen again.", "i18n-71": "Can be a company, a type of solution, or even a market behavior.", "i18n-72": "This helps us recommend the most realistic strategy for your current stage.", "i18n-73": "If you have another main network (TikTok, Facebook), you can add it too.", "i18n-74": "Be specific — this helps us better understand your market.", "i18n-75": "Select all that apply.", "i18n-76": "Select all that apply.", "i18n-77": "This helps us build a realistic strategy for your budget.", "i18n-78": "Other businesses (B2B)", "i18n-79": "End consumer (B2C)", "i18n-80": "Both", "i18n-81": "Government / public sector", "i18n-82": "1 to 2 salespeople", "i18n-83": "3 to 5 salespeople", "i18n-84": "More than 5", "i18n-85": "Outsourced team", "i18n-86": "Yes, well structured", "i18n-87": "Partially", "i18n-88": "No, it's informal", "i18n-89": "We're building it now", "i18n-90": "Excel / Google Spreadsheet", "i18n-91": "CRM (HubSpot, Salesforce…)", "i18n-92": "WhatsApp only", "i18n-93": "None", "i18n-94": "Client referrals", "i18n-95": "In-person visits", "i18n-96": "Organic Google / SEO", "i18n-97": "Instagram / TikTok", "i18n-98": "Active WhatsApp", "i18n-99": "LinkedIn", "i18n-100": "Paid ads", "i18n-101": "Trade shows and events", "i18n-102": "Yes, structured", "i18n-103": "Yes, sporadically", "i18n-104": "No, we wait for clients", "i18n-105": "We want to start", "i18n-106": "In-person visit", "i18n-107": "Phone call", "i18n-108": "Cold WhatsApp", "i18n-109": "Email", "i18n-110": "LinkedIn", "i18n-111": "We don't do it", "i18n-112": "Yes, up to date", "i18n-113": "We have one, outdated", "i18n-114": "We don't have a list", "i18n-115": "We're building one", "i18n-116": "Less than 10", "i18n-117": "10 to 30", "i18n-118": "30 to 80", "i18n-119": "More than 80", "i18n-120": "Yes, we still work together", "i18n-121": "Yes, but we ended it", "i18n-122": "We never hired one", "i18n-123": "We did it in-house", "i18n-124": "Price vs competitor", "i18n-125": "Distrust in the product/service", "i18n-126": "Slow internal approval", "i18n-127": "Loyalty to current provider", "i18n-128": "Deadline / delivery", "i18n-129": "We don't know the reason", "i18n-130": "Yes, with good results", "i18n-131": "Yes, without clear return", "i18n-132": "We never hired", "i18n-133": "We did it in-house", "i18n-134": "Every day", "i18n-135": "A few times a week", "i18n-136": "Sporadically", "i18n-137": "Almost never / stopped", "i18n-138": "Yes, running now", "i18n-139": "We ran them, then stopped", "i18n-140": "Never ran", "i18n-141": "We're interested", "i18n-142": "Increase the number of new clients", "i18n-143": "Sell more to existing clients", "i18n-144": "Expand to other regions", "i18n-145": "Launch a new product or service", "i18n-146": "Strengthen brand and authority in the sector", "i18n-147": "Word of mouth referral", "i18n-148": "Walk-in (passing by)", "i18n-149": "Google / Google Maps", "i18n-150": "Instagram / TikTok", "i18n-151": "WhatsApp", "i18n-152": "Delivery App", "i18n-153": "Paid ads", "i18n-154": "I can't tell", "i18n-155": "Most come back", "i18n-156": "Half and half", "i18n-157": "Most are new clients", "i18n-158": "I don't track", "i18n-159": "Yes, specific days", "i18n-160": "Yes, outside peak hours", "i18n-161": "Steady traffic", "i18n-162": "Always busy", "i18n-163": "Instagram", "i18n-164": "TikTok", "i18n-165": "Facebook", "i18n-166": "Google Business Profile", "i18n-167": "WhatsApp Business", "i18n-168": "I have none", "i18n-169": "Every day", "i18n-170": "A few times a week", "i18n-171": "Sometimes / irregular", "i18n-172": "Almost never", "i18n-173": "Yes, I always appear", "i18n-174": "Sometimes", "i18n-175": "I prefer to show just the work", "i18n-176": "Never have, but I'd try", "i18n-177": "Yes, with results", "i18n-178": "Yes, didn't work", "i18n-179": "Never invested", "i18n-180": "I'm interested", "i18n-181": "Attract more new clients", "i18n-182": "Get clients to come back more often", "i18n-183": "Become better known in the area", "i18n-184": "Grow and hire more people", "i18n-185": "Open a second location", "i18n-186": "Not sure yet / I need guidance", "i18n-187": "Submit Answers", "i18n-188": "Submit Answers", "i18n-189": "Your answers will be reviewed by the Maranata team before the meeting.", "i18n-190": "Your answers will be reviewed by the Maranata team before the meeting.", "i18n-191": "Please fill in all required fields (*) before submitting.", "i18n-192": "Please fill in all required fields (*) before submitting.", "i18n-193": "Answers received!", "i18n-194": "Thank you so much for your time.<br>The Maranata team will review everything and get in touch shortly for the next step.", "i18n-195": "E.g.: John Smith", "i18n-196": "E.g.: Smith Solutions Ltd.", "i18n-197": "E.g.: +1 555 123 4567", "i18n-198": "E.g.: @yourbusiness", "i18n-199": "E.g.: Downtown, New York", "i18n-200": "Briefly describe what your company does", "i18n-201": "E.g.: most of our clients come through referrals from existing customers…", "i18n-202": "E.g.: procurement managers at mid-size manufacturers…", "i18n-203": "E.g.: lack of results, poor communication, they didn't understand our market…", "i18n-204": "E.g.: company X with a lower price, or platforms like Y that let clients solve it themselves…", "i18n-205": "Can be operational, market-related, competition… anything that's holding back growth.", "i18n-206": "Feel free to be direct. This helps us understand what makes sense to propose.", "i18n-207": "E.g.: Anna Smith", "i18n-208": "E.g.: +1 555 123 4567", "i18n-209": "E.g.: @yourbusiness", "i18n-210": "E.g.: Downtown, New York", "i18n-211": "E.g.: mobile nail technician, personal trainer, florist, financial coach…", "i18n-212": "Can be lack of time, money, marketing knowledge, clients… feel free.", "i18n-213": "Practically invisible", "i18n-214": "Very strong", "i18n-215": "Practically invisible", "i18n-216": "Very strong"}
+};
+var i18nGate = {"pt-BR": {"pre": "Sua empresa tem um", "span": "time comercial?"}, "pt-PT": {"pre": "A sua empresa tem uma", "span": "equipa comercial?"}, "en": {"pre": "Does your company have a", "span": "sales team?"}};
+var i18nH1   = {"pt-BR": {"pre": "Quantos clientes sua empresa", "span": "poderia estar conquistando…<br>mas ainda não está?"}, "pt-PT": {"pre": "Quantos clientes a sua empresa", "span": "poderia estar a conquistar…<br>mas ainda não está?"}, "en": {"pre": "How many clients could your", "span": "company be winning…<br>but isn't yet?"}};
+
+function getLang(country) {
+  if (country === 'Brasil') return 'pt-BR';
+  if (['Portugal','Angola','Moçambique','Cabo Verde'].indexOf(country) !== -1) return 'pt-PT';
+  return 'en';
+}
+
+function applyLanguage(country) {
+  var lang = getLang(country);
+  var t = i18nData[lang] || i18nData['pt-BR'];
+
+  // Regular elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n-placeholder');
+    if (t[k] !== undefined) el.setAttribute('placeholder', t[k]);
+  });
+
+  // Gate title (has inner span + br)
+  var gt = document.querySelector('[data-i18n-gate-title]');
+  if (gt && i18nGate[lang]) {
+    gt.innerHTML = i18nGate[lang].pre + '<br><span>' + i18nGate[lang].span + '</span>';
+  }
+
+  // H1 (has inner span + br)
+  var h1 = document.querySelector('[data-i18n-h1]');
+  if (h1 && i18nH1[lang]) {
+    h1.innerHTML = i18nH1[lang].pre + '<br><span>' + i18nH1[lang].span + '</span>';
+  }
+}
+
+
+// ── CURRENCY CONFIG ───────────────────────────────────────────
+var currencyConfig = {
+  'Brasil':         { s:'R$',   fat:['30 mil','100 mil','300 mil','300 mil+'], budA:['500','1.500','3.000','5.000','5.000+'],      budB:['300','700','1.500','1.500+'] },
+  'Portugal':       { s:'€',    fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['50','150','300','300+'] },
+  'Espanha':        { s:'€',    fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['50','150','300','300+'] },
+  'França':         { s:'€',    fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['50','150','300','300+'] },
+  'Itália':         { s:'€',    fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['50','150','300','300+'] },
+  'Alemanha':       { s:'€',    fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['50','150','300','300+'] },
+  'Reino Unido':    { s:'£',    fat:['4k','12k','40k','40k+'],                budA:['80','250','500','800','800+'],                 budB:['40','120','250','250+'] },
+  'Estados Unidos': { s:'$',    fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['60','150','300','300+'] },
+  'Canadá':         { s:'CA$',  fat:['7k','20k','65k','65k+'],                budA:['150','400','800','1.500','1.500+'],            budB:['75','200','400','400+'] },
+  'Argentina':      { s:'USD',  fat:['5k','15k','50k','50k+'],                budA:['100','300','600','1.000','1.000+'],            budB:['60','150','300','300+'] },
+  'Chile':          { s:'$',    fat:['3M','10M','30M','30M+'],                budA:['50.000','150.000','300.000','500.000','500k+'],budB:['30.000','70.000','150.000','150k+'] },
+  'Colômbia':       { s:'$',    fat:['20M','60M','200M','200M+'],             budA:['400k','1.2M','2.5M','4M','4M+'],              budB:['200k','500k','1M','1M+'] },
+  'México':         { s:'$',    fat:['80k','250k','800k','800k+'],            budA:['2.000','6.000','12.000','20.000','20k+'],      budB:['1.200','3.000','6.000','6k+'] },
+  'Peru':           { s:'S/',   fat:['18k','55k','180k','180k+'],             budA:['400','1.200','2.400','4.000','4k+'],           budB:['200','500','1.200','1.2k+'] },
+  'Angola':         { s:'Kz',   fat:['2M','7M','20M','20M+'],                budA:['50k','150k','300k','500k','500k+'],            budB:['25k','70k','150k','150k+'] },
+  'Moçambique':     { s:'MT',   fat:['320k','1M','3M','3M+'],                 budA:['6.000','20.000','40.000','70.000','70k+'],     budB:['3.000','8.000','20.000','20k+'] },
+  'Cabo Verde':     { s:'$',    fat:['500k','1.5M','5M','5M+'],               budA:['10k','30k','60k','100k','100k+'],              budB:['5k','15k','30k','30k+'] },
+};
+var defaultCurrency = { s:'USD', fat:['5k','15k','50k','50k+'], budA:['100','300','600','1.000','1.000+'], budB:['60','150','300','300+'] };
+
+function fmt(s, v, isRevenue) {
+  // For revenue, append " / mês"
+  if (isRevenue) return s + ' ' + v + ' / mês';
+  return s + ' ' + v + ' / mês';
+}
+
+function applyCurrency(country) {
+  var c = currencyConfig[country] || defaultCurrency;
+
+  // Faturamento (Form A)
+  var fatLabels = [
+    'Até ' + c.s + ' ' + c.fat[0] + ' / mês',
+    c.s + ' ' + c.fat[0] + ' a ' + c.s + ' ' + c.fat[1] + ' / mês',
+    c.s + ' ' + c.fat[1] + ' a ' + c.s + ' ' + c.fat[2] + ' / mês',
+    'Acima de ' + c.s + ' ' + c.fat[2] + ' / mês',
+  ];
+  fatLabels.forEach(function(txt, i) {
+    var el = document.querySelector('[data-money="fat-' + i + '"]');
+    if (el) el.textContent = txt;
+  });
+
+  // Budget Form A
+  var budALabels = [
+    'Até ' + c.s + ' ' + c.budA[0] + ' / mês',
+    c.s + ' ' + c.budA[0] + ' a ' + c.s + ' ' + c.budA[1] + ' / mês',
+    c.s + ' ' + c.budA[1] + ' a ' + c.s + ' ' + c.budA[2] + ' / mês',
+    c.s + ' ' + c.budA[2] + ' a ' + c.s + ' ' + c.budA[3] + ' / mês',
+    'Acima de ' + c.s + ' ' + c.budA[3] + ' / mês',
+  ];
+  budALabels.forEach(function(txt, i) {
+    var el = document.querySelector('[data-money="bud-a-' + i + '"]');
+    if (el) el.textContent = txt;
+  });
+
+  // Budget Form B
+  var budBLabels = [
+    'Até ' + c.s + ' ' + c.budB[0] + ' / mês',
+    c.s + ' ' + c.budB[0] + ' a ' + c.s + ' ' + c.budB[1] + ' / mês',
+    c.s + ' ' + c.budB[1] + ' a ' + c.s + ' ' + c.budB[2] + ' / mês',
+    'Acima de ' + c.s + ' ' + c.budB[2] + ' / mês',
+  ];
+  budBLabels.forEach(function(txt, i) {
+    var el = document.querySelector('[data-money="bud-b-' + i + '"]');
+    if (el) el.textContent = txt;
+  });
+}
+
+// ── COUNTRY PICKER ────────────────────────────────────────────
+var selectedCountry = 'Brasil';
+
+var phonePrefix = {
+  'Brasil':          '+55 ',
+  'Argentina':       '+54 ',
+  'Chile':           '+56 ',
+  'Colômbia':        '+57 ',
+  'Peru':            '+51 ',
+  'Uruguai':         '+598 ',
+  'Paraguai':        '+595 ',
+  'Bolívia':         '+591 ',
+  'Equador':         '+593 ',
+  'Venezuela':       '+58 ',
+  'México':          '+52 ',
+  'Panamá':          '+507 ',
+  'Guatemala':       '+502 ',
+  'Costa Rica':      '+506 ',
+  'Estados Unidos':  '+1 ',
+  'Canadá':          '+1 ',
+  'Portugal':        '+351 ',
+  'Espanha':         '+34 ',
+  'Itália':          '+39 ',
+  'França':          '+33 ',
+  'Alemanha':        '+49 ',
+  'Reino Unido':     '+44 ',
+  'Angola':          '+244 ',
+  'Moçambique':      '+258 ',
+  'Cabo Verde':      '+238 ',
+};
+
+function applyPhonePrefix(country) {
+  var prefix = phonePrefix[country] || '';
+  document.querySelectorAll('input[name="whatsapp"]').forEach(function(inp) {
+    var current = inp.value;
+    // Only apply if field is empty or currently has a known prefix
+    var isKnownPrefix = Object.values(phonePrefix).some(function(p) {
+      return current.startsWith(p.trim()) || current === p;
+    });
+    if (!current || isKnownPrefix) {
+      inp.value = prefix;
+      // Place cursor at end
+      inp.setSelectionRange(prefix.length, prefix.length);
+    }
+  });
+}
+
+function toggleCountry() {
+  document.getElementById('countryPicker').classList.toggle('open');
+}
+function selectCountry(flag, name) {
+  selectedCountry = name;
+  document.getElementById('selectedFlag').textContent = flag;
+  document.getElementById('selectedName').textContent = name;
+  document.querySelectorAll('.country-item').forEach(function(el){ el.classList.remove('active'); });
+  event.currentTarget.classList.add('active');
+  document.getElementById('countryPicker').classList.remove('open');
+  applyPhonePrefix(name);
+  applyCurrency(name);
+  applyLanguage(name);
+}
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('countryPicker').contains(e.target)) {
+    document.getElementById('countryPicker').classList.remove('open');
+  }
+});
+
+// Auto-detect country from browser locale
+(function() {
+  var localeMap = {
+    'pt-BR': ['🇧🇷','Brasil'],
+    'pt':    ['🇧🇷','Brasil'],
+    'es-AR': ['🇦🇷','Argentina'],
+    'es-CL': ['🇨🇱','Chile'],
+    'es-CO': ['🇨🇴','Colômbia'],
+    'es-PE': ['🇵🇪','Peru'],
+    'es-UY': ['🇺🇾','Uruguai'],
+    'es-PY': ['🇵🇾','Paraguai'],
+    'es-BO': ['🇧🇴','Bolívia'],
+    'es-EC': ['🇪🇨','Equador'],
+    'es-MX': ['🇲🇽','México'],
+    'es-PA': ['🇵🇦','Panamá'],
+    'es-GT': ['🇬🇹','Guatemala'],
+    'es-CR': ['🇨🇷','Costa Rica'],
+    'es-VE': ['🇻🇪','Venezuela'],
+    'es':    ['🇪🇸','Espanha'],
+    'en-US': ['🇺🇸','Estados Unidos'],
+    'en-CA': ['🇨🇦','Canadá'],
+    'en-GB': ['🇬🇧','Reino Unido'],
+    'en':    ['🇺🇸','Estados Unidos'],
+    'pt-PT': ['🇵🇹','Portugal'],
+    'pt-AO': ['🇦🇴','Angola'],
+    'pt-MZ': ['🇲🇿','Moçambique'],
+    'pt-CV': ['🇨🇻','Cabo Verde'],
+    'fr':    ['🇫🇷','França'],
+    'fr-FR': ['🇫🇷','França'],
+    'de':    ['🇩🇪','Alemanha'],
+    'de-DE': ['🇩🇪','Alemanha'],
+    'it':    ['🇮🇹','Itália'],
+    'it-IT': ['🇮🇹','Itália'],
+  };
+  var langs = navigator.languages ? Array.from(navigator.languages) : [navigator.language];
+  var match = null;
+  for (var i = 0; i < langs.length; i++) {
+    var l = langs[i];
+    if (localeMap[l]) { match = localeMap[l]; break; }
+    var short = l.split('-')[0];
+    if (localeMap[short]) { match = localeMap[short]; break; }
+  }
+  if (match) {
+    selectedCountry = match[1];
+    document.getElementById('selectedFlag').textContent = match[0];
+    document.getElementById('selectedName').textContent = match[1];
+    document.querySelectorAll('.country-item').forEach(function(el){
+      el.classList.toggle('active', el.textContent.trim() === match[1]);
+    });
+  }
+  applyPhonePrefix(selectedCountry);
+  applyCurrency(selectedCountry);
+  applyLanguage(selectedCountry);
+})();
+
+
+
+function openForm(answer) {
+  var btnYes = document.getElementById('gateYes');
+  var btnNo  = document.getElementById('gateNo');
+  btnYes.classList.toggle('selected', answer === 'sim');
+  btnNo.classList.toggle('selected',  answer === 'nao');
+
+  var pais = selectedCountry || 'Brasil';
+  var form = answer === 'sim' ? document.getElementById('formA') : document.getElementById('formB');
+
+  // Inject country as hidden field
+  var existing = form.querySelector('input[name="pais"]');
+  if (existing) existing.remove();
+  var h = document.createElement('input'); h.type = 'hidden'; h.name = 'pais'; h.value = pais;
+  form.appendChild(h);
+
+  setTimeout(function() {
+    var gate = document.getElementById('gateCard');
+    gate.style.transition = 'opacity 0.35s, transform 0.35s';
+    gate.style.opacity = '0';
+    gate.style.transform = 'translateY(-12px)';
+    setTimeout(function() {
+      gate.style.display = 'none';
+      form.style.display = 'block';
+      var sections = form.querySelectorAll('.hidden-section');
+      sections.forEach(function(s, i) {
+        s.classList.remove('hidden-section');
+        s.style.animationDelay = (i * 0.1 + 0.05) + 's';
+        s.classList.add('reveal-animate');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 360);
+  }, 160);
+}
+
+function pick(el, type, name, e, form) {
+  if (e) e.preventDefault();
+  var input = el.querySelector('input');
+  var text  = el.querySelector('.opt-text').textContent.trim();
+  if (type === 'r') {
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(r){
+      r.closest('.opt').classList.remove('selected');
+    });
+    el.classList.add('selected');
+    input.checked = true;
+    input.value = text;
+  } else {
+    var sel = el.classList.contains('selected');
+    el.classList.toggle('selected', !sel);
+    input.checked = !sel;
+    input.value = text;
+  }
+  if (form === 'A') progA(); else progB();
+}
+
+function progA() {
+  var rg = new Set();
+  document.querySelectorAll('#formA input[type="radio"]:checked').forEach(function(r){ rg.add(r.name); });
+  var t = Array.from(document.querySelectorAll('#formA textarea,#formA input[type="text"],#formA input[type="email"],#formA input[type="tel"]')).filter(function(x){ return x.value.trim(); }).length;
+  document.getElementById('progress').style.width = Math.min(100, Math.round(((rg.size + t) / 20) * 100)) + '%';
+}
+
+function progB() {
+  var rg = new Set();
+  document.querySelectorAll('#formB input[type="radio"]:checked').forEach(function(r){ rg.add(r.name); });
+  var t = Array.from(document.querySelectorAll('#formB textarea,#formB input[type="text"],#formB input[type="email"],#formB input[type="tel"]')).filter(function(x){ return x.value.trim(); }).length;
+  document.getElementById('progress').style.width = Math.min(100, Math.round(((rg.size + t) / 13) * 100)) + '%';
+}
+
+// ── RESEND API ───────────────────────────────────────────────
+var RESEND_WORKER = '/send-email.php';
+
+function collectFormData(formEl) {
+  var data = {};
+
+  // Text / email / tel inputs
+  formEl.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]').forEach(function(inp) {
+    if (inp.name && inp.value.trim()) data[inp.name] = inp.value.trim();
+  });
+
+  // Textareas
+  formEl.querySelectorAll('textarea').forEach(function(ta) {
+    if (ta.name && ta.value.trim()) {
+      var label = ta.closest('.q') ? ta.closest('.q').querySelector('.q-label').textContent.replace('*','').trim() : ta.name;
+      data[label] = ta.value.trim();
+    }
+  });
+
+  // Radios
+  var radiosDone = {};
+  formEl.querySelectorAll('input[type="radio"]:checked').forEach(function(inp) {
+    if (radiosDone[inp.name]) return;
+    radiosDone[inp.name] = true;
+    var label = inp.closest('.q') ? inp.closest('.q').querySelector('.q-label').textContent.replace('*','').trim() : inp.name;
+    var val = inp.value !== 'on' ? inp.value : inp.closest('.opt').querySelector('.opt-text').textContent.trim();
+    data[label] = val;
+  });
+
+  // Checkboxes
+  var checkGroups = {};
+  formEl.querySelectorAll('input[type="checkbox"]:checked').forEach(function(inp) {
+    var label = inp.closest('.q') ? inp.closest('.q').querySelector('.q-label').textContent.replace('*','').trim() : inp.name;
+    if (!checkGroups[label]) checkGroups[label] = [];
+    var val = inp.value !== 'on' ? inp.value : inp.closest('.opt').querySelector('.opt-text').textContent.trim();
+    checkGroups[label].push(val);
+  });
+  Object.keys(checkGroups).forEach(function(label) {
+    data[label] = checkGroups[label].join(', ');
+  });
+
+  // Range
+  var rng = formEl.querySelector('input[type="range"]');
+  if (rng) {
+    var label = rng.closest('.q') ? rng.closest('.q').querySelector('.q-label').textContent.replace('*','').trim() : rng.name;
+    data[label] = rng.value + '/10';
+  }
+
+  // Country
+  data['País'] = selectedCountry || 'Brasil';
+
+  return data;
+}
+
+function buildEmailHtml(data, perfil) {
+  var accent = '#7c3aed';
+  var rows = '';
+  var skipKeys = ['nome_responsavel','nome_empresa','whatsapp','instagram','cidade','email','segmento','perfil_lead','pais','País'];
+  var topFields = [
+    ['Nome',      data['nome_responsavel'] || ''],
+    ['Empresa',   data['nome_empresa'] || ''],
+    ['WhatsApp',  data['whatsapp'] || ''],
+    ['Instagram', data['instagram'] || ''],
+    ['Cidade',    data['cidade'] || ''],
+    ['País',      data['País'] || ''],
+    ['Segmento',  data['segmento'] || data['nicho_especifico'] || ''],
+  ];
+
+  var topHtml = '';
+  topFields.forEach(function(f) {
+    if (!f[1]) return;
+    topHtml += '<tr><td style="padding:6px 12px;font-size:13px;color:#9ca3af;width:110px;vertical-align:top">' + f[0] + '</td><td style="padding:6px 12px;font-size:13px;color:#ffffff;font-weight:600">' + f[1] + '</td></tr>';
+  });
+
+  Object.keys(data).forEach(function(k) {
+    if (skipKeys.indexOf(k) !== -1) return;
+    if (k === 'nicho_especifico') return;
+    var v = data[k];
+    if (!v || v === 'on') return;
+    rows += '<tr style="border-bottom:1px solid #1e2a3a"><td style="padding:10px 16px;font-size:12px;color:#9ca3af;width:45%;vertical-align:top;line-height:1.5">' + k + '</td><td style="padding:10px 16px;font-size:13px;color:#e2e8f0;vertical-align:top;line-height:1.5">' + v + '</td></tr>';
+  });
+
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#050a14;font-family:Arial,sans-serif">' +
+    '<div style="max-width:600px;margin:0 auto;padding:32px 16px">' +
+    '<div style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:12px 12px 0 0;padding:28px 32px">' +
+    '<h1 style="margin:0;color:#fff;font-size:20px;font-weight:700">Novo Diagnóstico Recebido</h1>' +
+    '<p style="margin:6px 0 0;color:rgba(255,255,255,0.75);font-size:13px">' + perfil + '</p></div>' +
+    '<div style="background:#0d1525;border-radius:0;padding:20px 16px">' +
+    '<table style="width:100%;border-collapse:collapse;background:#111827;border-radius:10px;overflow:hidden">' + topHtml + '</table></div>' +
+    '<div style="background:#0d1525;padding:0 16px 24px">' +
+    '<h2 style="color:#a855f7;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px;padding-top:8px">Respostas do Diagnóstico</h2>' +
+    '<table style="width:100%;border-collapse:collapse;background:#111827;border-radius:10px;overflow:hidden">' + rows + '</table></div>' +
+    '<div style="background:#0d1525;border-radius:0 0 12px 12px;padding:16px;text-align:center;border-top:1px solid #1e2a3a">' +
+    '<p style="margin:0;color:#6b7280;font-size:11px">Maranata Marketing · formulario@resend.maranatamarketing.com</p></div>' +
+    '</div></body></html>';
+}
+
+function validateRequired(formEl, toastId) {
+  var ok = true;
+  formEl.querySelectorAll('[data-required="true"]').forEach(function(inp) {
+    inp.classList.remove('error');
+    if (!inp.value.trim()) { inp.classList.add('error'); ok = false; }
+  });
+  var toast = document.getElementById(toastId);
+  if (!ok) { toast.classList.add('visible'); setTimeout(function(){ toast.classList.remove('visible'); }, 4000); }
+  return ok;
+}
+
+function submitToResend(formEl, perfil, subjectLabel, toastId, btnEl) {
+  if (!validateRequired(formEl, toastId)) return;
+
+  btnEl.disabled = true;
+  btnEl.style.opacity = '0.7';
+  btnEl.textContent = '⏳ Enviando…';
+
+  var data = collectFormData(formEl);
+  var htmlBody = buildEmailHtml(data, perfil);
+  var nome = data['nome_responsavel'] || 'Lead';
+  var empresa = data['nome_empresa'] || '';
+  var subject = subjectLabel + (empresa ? ' — ' + empresa : '') + ' (' + nome + ')';
+
+  fetch(RESEND_WORKER, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: 'Diagnóstico Maranata <formulario@resend.maranatamarketing.com>',
+      to: ['contato@maranatamarketing.com'],
+      subject: subject,
+      html: htmlBody
+    })
+  })
+  .then(function(res) { return res.json().then(function(j){ return {ok: res.ok, json: j}; }); })
+  .then(function(r) {
+    if (r.ok) {
+      document.getElementById('progress').style.width = '100%';
+      document.getElementById('thankyouPage').style.display = 'block';
+      window.scrollTo({top:0,behavior:'smooth'});
+      // Translate thank-you page
+      var lang = getLang(selectedCountry);
+      var tyTexts = {
+        'pt-BR': { title: 'Respostas <span style="background:linear-gradient(135deg,#fff 0%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">recebidas!</span>', msg: 'Muito obrigado pelo seu tempo.<br>A equipe da Maranata vai analisar tudo e entrar em contato em breve para a próxima etapa.', step: 'Aguarde o contato da nossa equipe.' },
+        'pt-PT': { title: 'Respostas <span style="background:linear-gradient(135deg,#fff 0%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">recebidas!</span>', msg: 'Muito obrigado pelo seu tempo.<br>A equipa da Maranata vai analisar tudo e entrar em contacto em breve para a próxima etapa.', step: 'Aguarde o contacto da nossa equipa.' },
+        'en':    { title: 'Answers <span style="background:linear-gradient(135deg,#fff 0%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">received!</span>', msg: 'Thank you so much for your time.<br>The Maranata team will review everything and reach out shortly for the next step.', step: 'Our team will be in touch soon.' }
+      };
+      var ty = tyTexts[lang] || tyTexts['pt-BR'];
+      document.getElementById('tyTitle').innerHTML = ty.title;
+      document.getElementById('tyMsg').innerHTML = ty.msg;
+      document.getElementById('tyStepMsg').textContent = ty.step;
+    } else {
+      throw new Error(r.json.message || 'Erro ao enviar');
+    }
+  })
+  .catch(function(err) {
+    console.error(err);
+    btnEl.disabled = false;
+    btnEl.style.opacity = '1';
+    btnEl.textContent = 'Enviar Respostas';
+    var toast = document.getElementById(toastId);
+    toast.textContent = 'Erro ao enviar. Tente novamente.';
+    toast.classList.add('visible');
+    setTimeout(function(){ toast.classList.remove('visible'); }, 5000);
+  });
+}
+
+document.getElementById('formA').addEventListener('submit', function(e){
+  e.preventDefault();
+  submitToResend(this, 'Empresa com Time Comercial', 'Diagnóstico Comercial', 'toastA', this.querySelector('.submit-btn'));
+});
+document.getElementById('formB').addEventListener('submit', function(e){
+  e.preventDefault();
+  submitToResend(this, 'Micro Empreendedor / Negócio Local', 'Diagnóstico Negócio Local', 'toastB', this.querySelector('.submit-btn'));
+});
+</script>
+</body>
+</html>

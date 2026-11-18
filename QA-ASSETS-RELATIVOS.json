@@ -1,0 +1,15 @@
+{
+  "html_pages_processed": 64,
+  "files_changed": 63,
+  "asset_references_checked": 312,
+  "missing_asset_references": [],
+  "leading_root_asset_references_remaining": [],
+  "stylesheet_samples": {
+    "index.html": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap",
+    "blog/index.html": "../assets/seo-site.css",
+    "blog/quanto-custa-google-ads/index.html": "../../assets/seo-site.css",
+    "servicos/aiseo-e-busca-com-ia/index.html": "../../assets/seo-site.css",
+    "segmentos/psicologos/index.html": "../../assets/seo-site.css",
+    "cases/marketing-digital-para-psicologa/index.html": "../../assets/seo-site.css"
+  }
+}

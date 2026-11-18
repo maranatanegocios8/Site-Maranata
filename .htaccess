@@ -1,0 +1,73 @@
+# ── PHP e execução ──────────────────────────────────────────────
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+RewriteEngine On
+
+# ── Host canônico: HTTPS + sem www ───────────────────────────────
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.maranatamarketing\.com$ [NC]
+RewriteRule ^ https://maranatamarketing.com%{REQUEST_URI} [R=301,L]
+
+# ── Remove /index.html de URLs públicas ──────────────────────────
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]
+
+# Nomenclatura antiga para URL comercial mais clara
+RewriteRule ^servicos/engenharia-digital/?$ /servicos/criacao-de-sites/ [R=301,L]
+
+# ── CORS para send-email.php (preservado) ───────────────────────
+<Files "send-email.php">
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "POST, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^ - [R=204,L]
+</Files>
+
+# ── Segurança básica de arquivos ─────────────────────────────────
+<FilesMatch "\.(env|log|sh|sql|bak|git)$">
+    Require all denied
+</FilesMatch>
+
+# Arquivos internos de planejamento/QA não devem ser públicos
+<FilesMatch "^(QA-.*|LEIA-ME.*|PREVIEW-LOCAL.*|MAPA-DE-URLS-SEO.*|PLANO-SEO.*|README.*)$">
+    Require all denied
+</FilesMatch>
+
+# Páginas auxiliares/clientes não participam do SEO institucional
+<IfModule mod_setenvif.c>
+    SetEnvIf Request_URI "^/(lafavorita|valquiria|vanycardoso|pulsemotion|formulario)/" maranata_noindex=1
+    SetEnvIf Request_URI "^/resend/" maranata_noindex_private=1
+</IfModule>
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, follow" env=maranata_noindex
+    Header always set X-Robots-Tag "noindex, nofollow" env=maranata_noindex_private
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Brotli / gzip ────────────────────────────────────────────────
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ── Cache de assets estáticos ───────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png  "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType text/css   "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+ErrorDocument 404 /404.html

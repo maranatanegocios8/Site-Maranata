@@ -1,0 +1,7 @@
+PREVIEW LOCAL — MARANATA
+
+As páginas agora carregam CSS, logos, imagens e scripts quando abertas diretamente pelo Explorador de Arquivos (file:///...).
+
+Os links internos de navegação continuam no formato de produção (começando com /) para preservar a arquitetura SEO. Em file:// eles podem não navegar corretamente. Para testar a navegação completa, use um servidor local (Live Server, XAMPP, Laragon etc.) ou um subdomínio de teste.
+
+Nenhum arquivo PHP do Resend foi alterado.

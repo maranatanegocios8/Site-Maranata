@@ -1,0 +1,7 @@
+QA NAVBAR — LINK INÍCIO
+
+- Link "Início" adicionado à navegação desktop de todas as páginas SEO que usam a navbar compartilhada.
+- Link "Início" adicionado ao menu mobile das mesmas páginas.
+- Destino: / (raiz do domínio), que retorna à landing page principal da Maranata.
+- A home já possuía o item "Início" apontando para #hero e foi preservada.
+- Arquivos do Resend não foram alterados.
