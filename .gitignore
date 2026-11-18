@@ -1,3 +1,4 @@
 .private/
 .private.*/
 .vercel
+send-email.secret.php
