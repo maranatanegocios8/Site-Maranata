@@ -1,7 +1,6 @@
 {
   "trailingSlash": true,
   "redirects": [
-    { "source": "/:path(.*)", "has": [{ "type": "host", "value": "www.maranatamarketing.com" }], "destination": "https://maranatamarketing.com/:path", "permanent": true },
     { "source": "/servicos/engenharia-digital/", "destination": "/servicos/criacao-de-sites/", "permanent": true }
   ],
   "headers": [
