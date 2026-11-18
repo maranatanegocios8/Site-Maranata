@@ -11,6 +11,6 @@
     ] },
     { "source": "/formulario/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
     { "source": "/(lafavorita|valquiria|vanycardoso|pulsemotion)/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
-    { "source": "/(.*)\.(png|jpe?g|webp|avif|svg|woff2)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+    { "source": "/(.*)\\.(png|jpg|jpeg|webp|avif|svg|woff2)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
   ]
 }
