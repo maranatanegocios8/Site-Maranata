@@ -2,3 +2,5 @@
 .private.*/
 .vercel
 send-email.secret.php
+.env
+.env.*
