@@ -2505,7 +2505,7 @@
       if (email) data.reply_to = email;
       var payload = JSON.stringify(data);
 
-      fetch('send-email.php', {
+      fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: payload
